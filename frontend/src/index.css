@@ -155,7 +155,7 @@ h3,
 
 .header-nav .nav-link:hover,
 .header-nav .nav-link.active {
-  color: #ffea00 !important;
+  color: #F4C400 !important;
   background: transparent;
   box-shadow: none;
 }
@@ -313,8 +313,8 @@ h3,
 
 .site-footer-socials a:hover,
 .site-footer-socials a:hover svg {
-  color: #ffea00;
-  fill: #ffea00;
+  color: #F4C400;
+  fill: #F4C400;
   filter: none;
 }
 
@@ -395,7 +395,7 @@ h3,
 }
 
 .brand-logo__supl {
-  color: #ffea00;
+  color: #F4C400;
 }
 
 .brand-logo__ai {
@@ -440,7 +440,7 @@ h3,
   height: 1.3em;
   margin: 0 0 0 0.06em;
   transform: translateY(0.02em);
-  background: #ffea00;
+  background: #F4C400;
   -webkit-mask: url('./assets/fast-delivery.png') center / contain no-repeat;
   mask: url('./assets/fast-delivery.png') center / contain no-repeat;
 }
@@ -668,7 +668,7 @@ h3,
   padding: 10px 18px;
   border: 0;
   border-radius: 5px;
-  background: #ffea00;
+  background: #F4C400;
   color: #0b1f3a;
   font-size: 0.9rem;
   font-weight: 800;
@@ -740,7 +740,7 @@ h3,
 
 .home-feature-card h2 {
   margin: 0;
-  color: #ffea00;
+  color: #F4C400;
   font-weight: 800;
   font-size: clamp(1.5rem, 2vw, 2rem);
   letter-spacing: -0.02em;
@@ -761,7 +761,7 @@ h3,
 .home-feature-card span {
   display: block;
   margin-top: auto;
-  color: #ffea00;
+  color: #F4C400;
   font-size: clamp(0.9rem, 1.1vw, 1.05rem);
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -781,31 +781,36 @@ h3,
 .home-login-section {
   position: relative;
   z-index: 1;
-  display: grid;
-  place-items: center;
-  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 60px;
   width: 100%;
-  padding: 32px 20px 56px;
+  margin: 0;
+  padding: 56px 15px 72px 80px;
   scroll-margin-top: 24px;
 }
+
 
 .home-login-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  width: min(450px, 100%);
-  padding: 30px;
+  gap: 12px;
+  width: min(520px, 100%);
+  padding: 38px 36px;
   border-radius: 20px;
   background-color: #ffffff;
   color: #151717;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+  flex: 0 0 auto;
 }
 
+
 .home-login-form h2 {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   color: #151717;
-  font-size: 1.7rem;
+  font-size: 2rem;
 }
 
 .home-login-field > label {
@@ -867,14 +872,22 @@ h3,
   color: #151717;
 }
 
-.home-login-options button,
-.home-login-register button {
-  padding: 0;
-  border: 0;
+
+
+.home-login-link {
   background: transparent;
+  border: none;
+  padding: 0;
   color: #2d79f3;
   font-weight: 500;
+  font-size: inherit;
   cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.home-login-link:hover {
+  text-decoration: underline;
 }
 
 .home-login-submit {
@@ -906,6 +919,114 @@ h3,
 
 .home-login-error {
   color: #dc2626;
+}
+
+/* CTA panel to the right of the login form */
+.home-login-cta {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 40px;
+}
+
+.home-login-cta-heading {
+  margin: 0;
+  font-size: clamp(5rem, 9vw, 8.5rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  color: #ffffff;
+  word-break: break-word;
+}
+
+.home-login-cta-now {
+  color: #F4C400;
+}
+
+/* Large interactive card between Login and Footer */
+.home-bottom-card-section {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 10px 40px 80px;
+  box-sizing: border-box;
+}
+
+.home-bottom-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 430px;
+  padding: 2px;
+  box-sizing: border-box;
+  border-radius: 24px;
+  overflow: hidden;
+  line-height: 1.6;
+  background: #0b1f3a;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+
+.home-bottom-card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 22px;
+  width: 100%;
+  min-height: 426px;
+  padding: 50px 58px;
+  box-sizing: border-box;
+  border-radius: 22px;
+  color: #ffffff;
+  overflow: hidden;
+  background: #0b1f3a;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.home-bottom-card-heading {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: #F4C400;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+
+
+.home-bottom-card:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+
+@media (max-width: 700px) {
+  .home-bottom-card-section {
+    padding: 10px 18px 55px;
+  }
+
+  .home-bottom-card {
+    min-height: 320px;
+    border-radius: 20px;
+  }
+
+  .home-bottom-card-content {
+    min-height: 316px;
+    padding: 36px 28px;
+    border-radius: 18px;
+    gap: 18px;
+  }
+
+  .home-bottom-card-heading {
+    font-size: 2.3rem;
+  }
 }
 
 .home-signup-section {
@@ -1064,7 +1185,20 @@ h3,
 }
 
 .home-title-highlight {
-  color: #ffea00;
+  color: #F4C400;
+}
+
+.home-typing-cursor {
+  display: inline-block;
+  margin-left: 4px;
+  color: #F4C400;
+  font-weight: 500;
+  animation: home-cursor-blink 0.9s steps(1, end) infinite;
+}
+
+@keyframes home-cursor-blink {
+  0%, 45% { opacity: 1; }
+  46%, 100% { opacity: 0; }
 }
 
 .home-copy {
@@ -1107,6 +1241,20 @@ h3,
 
   .home-hero-copy {
     text-align: center;
+  }
+
+  .home-login-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 24px 60px;
+  }
+
+  .home-login-cta {
+    padding-left: 0;
+    justify-content: center;
+    text-align: center;
+    order: -1;
   }
 
   .home-feature-card {
@@ -2790,14 +2938,297 @@ textarea:focus {
 }
 
 /* Shared neumorphic interaction for project action buttons. */
-button:not(.modal-close):not(.drawer-close):not(.link-btn):not(.header-login-button):not(.login-button):not(.logout-button):not(.gauge-scan-button) {
+button:not(.modal-close):not(.drawer-close):not(.link-btn):not(.header-login-button):not(.login-button):not(.logout-button):not(.gauge-scan-button):not(.home-bottom-card) {
   border-radius: 0.5em;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.16), -6px -6px 12px rgba(255, 255, 255, 0.72);
 }
 
-button:not(.modal-close):not(.drawer-close):not(.link-btn):not(.header-login-button):not(.login-button):not(.logout-button):not(.gauge-scan-button):active:not(:disabled) {
+button:not(.modal-close):not(.drawer-close):not(.link-btn):not(.header-login-button):not(.login-button):not(.logout-button):not(.gauge-scan-button):not(.home-bottom-card):active:not(:disabled) {
   transform: translateY(1px);
   box-shadow: inset 4px 4px 12px rgba(0, 0, 0, 0.16), inset -4px -4px 12px rgba(255, 255, 255, 0.72);
+}
+
+/* Expandable How to Use guide - button style */
+.home-bottom-card-section {
+  padding-bottom: 80px;
+}
+
+.home-bottom-card {
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 230px;
+  padding: 0;
+  border: none;
+  border-radius: 5px;
+  background: #183153;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: none !important;
+  overflow: hidden;
+  outline: none;
+  transform: translateZ(0);
+}
+
+.home-bottom-card::after {
+  content: "";
+  width: 0%;
+  height: 100%;
+  background: #F4C400;
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.home-bottom-card:hover::after {
+  right: auto;
+  left: 0;
+  width: 100%;
+}
+
+.home-bottom-card:active {
+  transform: translateZ(0);
+}
+
+.home-bottom-card:focus-visible {
+  outline: 3px solid #F4C400;
+  outline-offset: 4px;
+}
+
+.home-bottom-card-content {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 230px;
+  padding: 18px 25px;
+  box-sizing: border-box;
+  background: transparent;
+  color: #fff;
+  pointer-events: none;
+}
+
+.home-bottom-card-heading {
+  margin: 0;
+  color: #F4C400;
+  font-size: clamp(3.4rem, 7vw, 6.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.home-bottom-card:hover .home-bottom-card-heading {
+  color: #183153;
+  animation: homeHowToScaleUp 0.3s ease-in-out;
+}
+
+@keyframes homeHowToScaleUp {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.home-how-to-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  border-radius: 24px;
+  background: #0b1f3a;
+  transition: grid-template-rows 0.55s ease, opacity 0.35s ease, margin-top 0.55s ease;
+}
+
+.home-how-to-content.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 18px;
+}
+
+.home-how-to-inner {
+  min-height: 0;
+  overflow: hidden;
+  padding: 34px 58px 42px;
+}
+
+.home-how-to-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding-bottom: 28px;
+}
+
+/* Interactive workflow subcards */
+.home-how-to-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  padding: 32px;
+  border: 0;
+  border-radius: 10px;
+  background: #F4C400;
+  color: #183153;
+  box-sizing: border-box;
+  overflow: hidden;
+  cursor: default;
+  transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1), background-color 0.4s ease-in-out;
+}
+
+.home-how-to-step::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #183153;
+  transform: translateX(100%);
+  transition: transform 0.4s ease-in-out;
+  z-index: 0;
+}
+
+.home-how-to-step:hover::before {
+  transform: translateX(0);
+}
+
+.home-how-to-step:hover {
+  transform: scale(1.025);
+}
+
+.home-how-to-step > div {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+}
+
+.home-how-to-step h4 {
+  margin: 0;
+  color: #183153;
+  font-size: clamp(3.1rem, 4.8vw, 3.9rem);
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.home-how-to-step p {
+  max-height: 0;
+  margin: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(12px);
+  color: #ffffff;
+  font-size: 1.84rem;
+  line-height: 1.55;
+  transition: max-height 0.4s ease, opacity 0.3s ease, transform 0.4s ease, margin-top 0.3s ease;
+}
+
+.home-how-to-step strong {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.home-how-to-step:hover h4 {
+  color: #F4C400;
+  transform: scale(0.98);
+}
+
+.home-how-to-step:hover p {
+  max-height: 500px;
+  margin-top: 20px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+@media (max-width: 800px) {
+  .home-how-to-inner {
+    padding: 28px 28px 34px;
+  }
+
+  .home-how-to-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .home-bottom-card {
+    min-height: 220px;
+  }
+
+  .home-bottom-card-content {
+    min-height: 216px;
+    padding: 34px 22px;
+  }
+
+  .home-bottom-card-heading {
+    font-size: 3.2rem;
+  }
+
+  .home-how-to-inner {
+    padding: 22px 20px 28px;
+  }
+
+  .home-how-to-step {
+    grid-template-columns: 42px 1fr;
+    gap: 13px;
+    padding: 20px;
+  }
+}
+
+/* Final header Login button: unified SuplAI yellow, no glow */
+.header-login-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 22px;
+  min-width: 92px;
+  border: none;
+  border-radius: 8px;
+  background: #f4c400;
+  color: #183153;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: none !important;
+  filter: none !important;
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.header-login-button::before,
+.header-login-button::after {
+  display: none !important;
+  content: none !important;
+}
+
+.header-login-button:hover {
+  background: #ffd21a;
+  color: #183153;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: translateY(-1px);
+}
+
+.header-login-button:active {
+  transform: translateY(0);
+  box-shadow: none !important;
 }
