@@ -3024,7 +3024,7 @@ button:not(.modal-close):not(.drawer-close):not(.link-btn):not(.header-login-but
 
 .home-bottom-card-heading {
   margin: 0;
-  color: #F4C400;
+  color: #fff;
   font-size: clamp(3.4rem, 7vw, 6.5rem);
   font-weight: 900;
   line-height: 1;
@@ -3133,14 +3133,14 @@ button:not(.modal-close):not(.drawer-close):not(.link-btn):not(.header-login-but
   overflow: hidden;
   opacity: 0;
   transform: translateY(12px);
-  color: #ffffff;
+  color: #F4C400;
   font-size: 1.84rem;
   line-height: 1.55;
   transition: max-height 0.4s ease, opacity 0.3s ease, transform 0.4s ease, margin-top 0.3s ease;
 }
 
 .home-how-to-step strong {
-  color: #ffffff;
+  color: #F4C400;
   font-weight: 800;
 }
 
@@ -3156,6 +3156,27 @@ button:not(.modal-close):not(.drawer-close):not(.link-btn):not(.header-login-but
   transform: translateY(0);
 }
 
+.home-how-to-final {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 4px;
+  padding: 22px 24px;
+  border-radius: 14px;
+  background: #F4C400;
+  color: #183153;
+}
+
+.home-how-to-final span {
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.home-how-to-final strong {
+  font-size: clamp(0.9rem, 1.5vw, 1.12rem);
+}
 
 @media (max-width: 800px) {
   .home-how-to-inner {
@@ -3164,6 +3185,12 @@ button:not(.modal-close):not(.drawer-close):not(.link-btn):not(.header-login-but
 
   .home-how-to-steps {
     grid-template-columns: 1fr;
+  }
+
+  .home-how-to-final {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
   }
 }
 
@@ -3231,4 +3258,1361 @@ button:not(.modal-close):not(.drawer-close):not(.link-btn):not(.header-login-but
 .header-login-button:active {
   transform: translateY(0);
   box-shadow: none !important;
+}
+
+
+/* =========================================================
+   TEMPORARY DASHBOARD BACKGROUND
+   Dashboard is dark blue; navbar remains darker.
+   ========================================================= */
+
+.page-body.dashboard-empty-page {
+  min-height: calc(100vh - 70px);
+  background: #24456b !important;
+}
+
+
+/* Darker temporary Dashboard background */
+.page-body.dashboard-empty-page {
+  background: #183153 !important;
+}
+
+/* =========================================================
+   SUPLAI MAP — CLEAN REALISTIC NODES + CURVED ROUTES
+   Paste at the END of index.css
+   ========================================================= */
+
+.suplai-map-marker-wrap {
+  background: transparent !important;
+  border: 0 !important;
+}
+
+/* Compact node so nearby locations don't merge visually */
+.suplai-node {
+  position: relative;
+  display: block;
+  width: 28px;
+  height: 28px;
+  transform: translateZ(0);
+  filter: drop-shadow(0 3px 4px rgba(0,0,0,.35));
+}
+
+.suplai-node.large {
+  width: 38px;
+  height: 38px;
+}
+
+/* Soft halo */
+.suplai-node-halo {
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: var(--node-color);
+  opacity: .24;
+  filter: blur(5px);
+  animation: suplai-node-breathe 2.6s ease-in-out infinite;
+}
+
+/* Crisp outer ring */
+.suplai-node-ring {
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: rgba(8, 24, 43, .86);
+  border: 2px solid var(--node-color);
+  box-shadow:
+    0 0 0 1.5px rgba(255,255,255,.82),
+    0 0 10px var(--node-color);
+}
+
+/* White glass center */
+.suplai-node-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,.98),
+    rgba(225,239,250,.92)
+  );
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.95),
+    0 1px 3px rgba(0,0,0,.22);
+}
+
+.suplai-node.large .suplai-node-core {
+  width: 23px;
+  height: 23px;
+}
+
+.suplai-node.large .suplai-node-ring {
+  inset: 4px;
+  border-width: 2.5px;
+}
+
+/* Simple human silhouette */
+.suplai-node-head {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  left: 50%;
+  top: 3px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: var(--node-color);
+}
+
+.suplai-node-shoulders {
+  position: absolute;
+  width: 9px;
+  height: 6px;
+  left: 50%;
+  bottom: 2px;
+  transform: translateX(-50%);
+  border-radius: 7px 7px 3px 3px;
+  background: var(--node-color);
+}
+
+.suplai-node.large .suplai-node-head {
+  width: 6px;
+  height: 6px;
+  top: 4px;
+}
+
+.suplai-node.large .suplai-node-shoulders {
+  width: 12px;
+  height: 7px;
+  bottom: 3px;
+}
+
+@keyframes suplai-node-breathe {
+  0%, 100% {
+    transform: scale(.9);
+    opacity: .18;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: .34;
+  }
+}
+
+/* =========================================================
+   CURVED SUPPLY ROUTES
+   ========================================================= */
+
+.map-viewport .map-route-glow {
+  filter: blur(2.5px);
+}
+
+.map-viewport .map-route-base {
+  filter: drop-shadow(0 0 2px rgba(0,0,0,.45));
+}
+
+.map-viewport .map-route-flow {
+  stroke-dashoffset: 0;
+  animation: suplai-route-travel 1.8s linear infinite;
+  filter:
+    drop-shadow(0 0 2px rgba(255,255,255,.95))
+    drop-shadow(0 0 5px rgba(47,166,255,.65));
+}
+
+@keyframes suplai-route-travel {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -32;
+  }
+}
+
+.map-viewport:hover .map-route-flow {
+  animation-duration: 1.35s;
+}
+
+/* =========================================================
+   TOOLTIP
+   ========================================================= */
+
+.suplai-map-tooltip {
+  background: rgba(7, 20, 36, .96) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.14) !important;
+  border-radius: 8px !important;
+  padding: 8px 10px !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.28) !important;
+}
+
+.suplai-map-tooltip .leaflet-tooltip-tip {
+  background: rgba(7, 20, 36, .96) !important;
+}
+
+.map-tooltip-title {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 3px;
+}
+
+.map-tooltip-subtitle {
+  font-size: 10px;
+  opacity: .68;
+}
+
+.map-tooltip-risk {
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.company-legend {
+  margin-left: 5px;
+}
+
+.company-legend-dot {
+  color: #1688ff;
+  text-shadow: 0 0 5px rgba(22,136,255,.75);
+}
+/* =========================================================
+   SUPLAI DASHBOARD — MAP + ALWAYS-VISIBLE INFO CARDS
+   ========================================================= */
+
+.dashboard-map-dashboard {
+  display: flex !important;
+  flex-direction: column;
+  gap: 16px;
+  background: #183153 !important;
+  color: #ffffff;
+  min-height: calc(100vh - 70px);
+}
+
+.dashboard-map-full {
+  width: 100%;
+  min-width: 0;
+}
+
+.dashboard-map-full .map-card {
+  width: 100%;
+}
+
+/* =========================================================
+   THREE NORMAL CARDS
+   ========================================================= */
+
+.dashboard-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.dashboard-info-card {
+  min-width: 0;
+  overflow: hidden;
+  border: none;
+  border-radius: 14px;
+  background: #f4c400;
+  color: #183153;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.20);
+  transition:
+    transform 400ms ease,
+    filter 400ms ease,
+    box-shadow 400ms ease;
+}
+
+.dashboard-info-grid:hover .dashboard-info-card:not(:hover) {
+  filter: blur(3px);
+  transform: scale(0.97);
+}
+
+.dashboard-info-card:hover {
+  transform: scale(1.025);
+  box-shadow: 0 15px 34px rgba(0, 0, 0, 0.28);
+}
+
+/* =========================================================
+   LARGE CENTERED TITLES
+   ========================================================= */
+
+.dashboard-info-header {
+  position: relative;
+  min-height: 142px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 26px 52px 22px;
+}
+
+.dashboard-info-title {
+  width: 100%;
+  color: #183153;
+  text-align: center;
+  font-size: clamp(1.55rem, 2.2vw, 2.15rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.dashboard-info-count {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  min-width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: rgba(24, 49, 83, 0.14);
+  color: #183153;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+/* =========================================================
+   CONTENT — ALWAYS VISIBLE
+   ========================================================= */
+
+.dashboard-info-content {
+  padding: 0 20px 20px;
+  border-top: 1px solid rgba(24, 49, 83, 0.16);
+  background: rgba(24, 49, 83, 0.07);
+}
+
+.dashboard-disruption-row,
+.dashboard-supplier-row,
+.dashboard-feed-row {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(24, 49, 83, 0.14);
+}
+
+.dashboard-row-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.dashboard-row-title {
+  color: #183153;
+  font-size: 0.8rem;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-row-meta {
+  margin-top: 4px;
+  color: rgba(24, 49, 83, 0.72);
+  font-size: 0.69rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-row-date {
+  margin-top: 3px;
+  color: rgba(24, 49, 83, 0.55);
+  font-size: 0.64rem;
+}
+
+.dashboard-supplier-rank {
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  background: rgba(24, 49, 83, 0.14);
+  color: #183153;
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.dashboard-supplier-score {
+  flex: 0 0 34px;
+  text-align: right;
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+.dashboard-risk-bar {
+  height: 4px;
+  margin-top: 7px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(24, 49, 83, 0.16);
+}
+
+.dashboard-risk-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.dashboard-feed-status {
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #183153;
+  box-shadow: 0 0 8px rgba(24, 49, 83, 0.5);
+}
+
+.dashboard-inline-empty {
+  padding: 20px 0 15px;
+  color: rgba(24, 49, 83, 0.7);
+  font-size: 0.78rem;
+}
+
+.dashboard-info-link {
+  display: inline-block;
+  margin-top: 13px;
+  color: #183153;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.dashboard-info-link:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+  .dashboard-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-info-card:hover {
+    transform: scale(1.01);
+  }
+
+  .dashboard-info-grid:hover .dashboard-info-card:not(:hover) {
+    filter: none;
+    transform: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-info-header {
+    min-height: 118px;
+    padding: 22px 45px;
+  }
+
+  .dashboard-info-title {
+    font-size: 1.45rem;
+  }
+
+  .dashboard-info-content {
+    padding: 0 16px 16px;
+  }
+}
+/* =========================================================
+   HOME — HOW TO SUBCARDS
+   Keep the explanation text white when the yellow card opens.
+   ========================================================= */
+
+.home-how-to-step:hover p,
+.home-how-to-step:hover strong {
+  color: #ffffff !important;
+}
+
+/* Keep the step heading yellow on the dark hover panel. */
+.home-how-to-step:hover h4 {
+  color: #f4c400 !important;
+}
+
+/* =========================================================
+   SUPLAI DASHBOARD — NORMAL INFO CARDS MATCH HOME DESIGN
+   ========================================================= */
+
+.dashboard-map-dashboard {
+  display: flex !important;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  background: #183153 !important;
+  color: #ffffff;
+}
+
+.dashboard-map-full {
+  width: 100%;
+  min-width: 0;
+}
+
+.dashboard-map-full .map-card {
+  width: 100%;
+}
+
+.dashboard-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.dashboard-info-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 0;
+  min-height: 360px;
+  padding: 32px;
+  border: 0;
+  border-radius: 14px;
+  background: #0b1f3a;
+  color: #ffffff;
+  text-align: left;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+  transition: transform 400ms ease, filter 400ms ease, box-shadow 400ms ease;
+}
+
+.dashboard-info-card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.26);
+}
+
+.dashboard-info-grid:has(.dashboard-info-card:hover)
+  .dashboard-info-card:not(:hover) {
+  filter: blur(6px);
+  transform: scale(0.92);
+}
+
+.dashboard-info-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+  padding: 0 36px;
+}
+
+.dashboard-info-title {
+  width: 100%;
+  color: #F4C400;
+  text-align: center;
+  font-size: clamp(1.8rem, 2.7vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.dashboard-info-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0 9px;
+  border-radius: 50%;
+  background: rgba(244, 196, 0, 0.14);
+  border: 1px solid rgba(244, 196, 0, 0.22);
+  color: #F4C400;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.dashboard-info-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 8px 0 0;
+  border-top: 0;
+  background: transparent;
+}
+
+.dashboard-disruption-row,
+.dashboard-supplier-row,
+.dashboard-feed-row {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.dashboard-row-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.dashboard-row-title {
+  color: #ffffff;
+  font-size: 0.86rem;
+  font-weight: 800;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-row-meta {
+  margin-top: 5px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-row-date {
+  margin-top: 3px;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.65rem;
+}
+
+.dashboard-supplier-rank {
+  flex: 0 0 25px;
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(244, 196, 0, 0.14);
+  color: #F4C400;
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.dashboard-supplier-score {
+  flex: 0 0 34px;
+  color: #F4C400 !important;
+  text-align: right;
+  font-size: 0.95rem;
+  font-weight: 900;
+}
+
+.dashboard-risk-bar {
+  height: 4px;
+  margin-top: 8px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.dashboard-risk-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #F4C400 !important;
+}
+
+.dashboard-feed-status {
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #F4C400;
+  box-shadow: 0 0 8px rgba(244, 196, 0, 0.45);
+}
+
+.dashboard-inline-empty {
+  padding: 20px 0 15px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.8rem;
+}
+
+.dashboard-info-link {
+  display: inline-block;
+  margin-top: auto;
+  padding-top: 18px;
+  color: #F4C400;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.dashboard-info-link:hover {
+  text-decoration: underline;
+}
+
+/* Home How-To subcards: explanation text stays white on dark hover state. */
+.home-how-to-step:hover p,
+.home-how-to-step:hover strong {
+  color: #ffffff !important;
+}
+
+.home-how-to-step:hover h4 {
+  color: #F4C400 !important;
+}
+
+@media (max-width: 1000px) {
+  .dashboard-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-info-card {
+    min-height: 300px;
+  }
+
+  .dashboard-info-card:hover {
+    transform: scale(1.025);
+  }
+
+  .dashboard-info-grid:has(.dashboard-info-card:hover)
+    .dashboard-info-card:not(:hover) {
+    filter: none;
+    transform: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-info-card {
+    min-height: 280px;
+    padding: 26px;
+  }
+
+  .dashboard-info-header {
+    min-height: 95px;
+    padding: 0 25px;
+  }
+
+  .dashboard-info-title {
+    font-size: 1.55rem;
+  }
+}
+/* =========================================================
+   DASHBOARD — CLEAN CARD STYLE
+   ========================================================= */
+
+.dashboard-map-dashboard {
+  background: #183153;
+  padding: 18px 20px 28px;
+}
+
+.dashboard-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.dashboard-info-card {
+  min-width: 0;
+  min-height: 360px;
+  padding: 32px;
+  border: 0;
+  border-radius: 14px;
+  background: #0b1f3a;
+  color: #ffffff;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+  transition: transform 400ms ease, filter 400ms ease, box-shadow 400ms ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-info-card:hover {
+  transform: scale(1.035);
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.26);
+  position: relative;
+  z-index: 2;
+}
+
+.dashboard-info-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  min-height: 92px;
+  margin-bottom: 14px;
+}
+
+.dashboard-info-title {
+  margin: 0;
+  color: #f4c400;
+  font-size: clamp(2rem, 2.7vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.dashboard-info-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.dashboard-disruption-list,
+.dashboard-supplier-list,
+.dashboard-feed-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-disruption-row,
+.dashboard-supplier-row,
+.dashboard-feed-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(117, 188, 232, 0.20);
+}
+
+.dashboard-disruption-row:first-child,
+.dashboard-supplier-row:first-child,
+.dashboard-feed-row:first-child {
+  padding-top: 0;
+}
+
+.dashboard-disruption-row:last-child,
+.dashboard-supplier-row:last-child,
+.dashboard-feed-row:last-child {
+  border-bottom: 0;
+}
+
+.dashboard-row-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.dashboard-row-title {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.dashboard-row-meta {
+  margin-top: 5px;
+  color: #ffffff;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.dashboard-row-date {
+  margin-top: 4px;
+  color: #9fb0c8;
+  font-size: 0.76rem;
+  line-height: 1.3;
+}
+
+/* No dots, no blinking indicators — severity is text only. */
+.dashboard-severity {
+  flex: 0 0 auto;
+  margin-left: auto;
+  font-size: 0.82rem;
+  font-weight: 800;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+.dashboard-severity.severity-high {
+  color: #ef4444;
+}
+
+.dashboard-severity.severity-medium {
+  color: #f97316;
+}
+
+.dashboard-severity.severity-low {
+  color: #22c55e;
+}
+
+/* No rank numbers / bullets. */
+.dashboard-supplier-rank,
+.dashboard-feed-status,
+.dashboard-info-count {
+  display: none !important;
+}
+
+.dashboard-supplier-row {
+  align-items: center;
+}
+
+.dashboard-supplier-score {
+  flex: 0 0 auto;
+  min-width: 32px;
+  font-size: 1.05rem;
+  font-weight: 900;
+  text-align: right;
+}
+
+.dashboard-risk-bar {
+  width: 100%;
+  height: 5px;
+  margin-top: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #263f5e;
+}
+
+.dashboard-risk-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  transition: width 300ms ease, background-color 300ms ease;
+}
+
+.dashboard-inline-empty {
+  color: #9fb0c8;
+  font-size: 0.9rem;
+}
+
+.dashboard-info-link {
+  display: inline-block;
+  width: fit-content;
+  margin-top: auto;
+  padding-top: 18px;
+  color: #f4c400;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 200ms ease, color 200ms ease;
+}
+
+.dashboard-info-link:hover {
+  color: #ffd928;
+  transform: translateX(3px);
+}
+
+@media (max-width: 1100px) {
+  .dashboard-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-info-card {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .dashboard-map-dashboard {
+    padding: 12px;
+  }
+
+  .dashboard-info-card {
+    padding: 24px;
+  }
+
+  .dashboard-info-title {
+    font-size: 2rem;
+  }
+}
+
+
+/* ── Supplier risk colours ─────────────────────────────── */
+/* These use !important so older index.css rules cannot force every bar yellow. */
+
+.dashboard-risk-bar > span.risk-green {
+  background: #22c55e !important;
+}
+
+.dashboard-risk-bar > span.risk-orange {
+  background: #f59e0b !important;
+}
+
+.dashboard-risk-bar > span.risk-red {
+  background: #ef4444 !important;
+}
+
+.dashboard-risk-bar > span.risk-dark-red {
+  background: #8b0000 !important;
+}
+
+.dashboard-supplier-score.risk-green {
+  color: #22c55e !important;
+}
+
+.dashboard-supplier-score.risk-orange {
+  color: #f59e0b !important;
+}
+
+.dashboard-supplier-score.risk-red {
+  color: #ef4444 !important;
+}
+
+.dashboard-supplier-score.risk-dark-red {
+  color: #8b0000 !important;
+}
+/* =========================================================
+   DASHBOARD — CLEAN CARD STYLE
+   ========================================================= */
+
+.dashboard-map-dashboard {
+  background: #183153;
+  padding: 18px 20px 28px;
+}
+
+.dashboard-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.dashboard-info-card {
+  min-width: 0;
+  min-height: 360px;
+  padding: 32px;
+  border: 0;
+  border-radius: 14px;
+  background: #0b1f3a;
+  color: #ffffff;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+  transition: transform 400ms ease, filter 400ms ease, box-shadow 400ms ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-info-card:hover {
+  transform: scale(1.035);
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.26);
+  position: relative;
+  z-index: 2;
+}
+
+.dashboard-info-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  min-height: 92px;
+  margin-bottom: 14px;
+}
+
+.dashboard-info-title {
+  margin: 0;
+  color: #f4c400;
+  font-size: clamp(2rem, 2.7vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.dashboard-info-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.dashboard-disruption-list,
+.dashboard-supplier-list,
+.dashboard-feed-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-disruption-row,
+.dashboard-supplier-row,
+.dashboard-feed-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(117, 188, 232, 0.20);
+}
+
+.dashboard-disruption-row:first-child,
+.dashboard-supplier-row:first-child,
+.dashboard-feed-row:first-child {
+  padding-top: 0;
+}
+
+.dashboard-disruption-row:last-child,
+.dashboard-supplier-row:last-child,
+.dashboard-feed-row:last-child {
+  border-bottom: 0;
+}
+
+.dashboard-row-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.dashboard-row-title {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.dashboard-row-meta {
+  margin-top: 5px;
+  color: #ffffff;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.dashboard-row-date {
+  margin-top: 4px;
+  color: #9fb0c8;
+  font-size: 0.76rem;
+  line-height: 1.3;
+}
+
+/* No dots, no blinking indicators — severity is text only. */
+.dashboard-severity {
+  flex: 0 0 auto;
+  margin-left: auto;
+  font-size: 0.82rem;
+  font-weight: 800;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+.dashboard-severity.severity-high {
+  color: #ef4444;
+}
+
+.dashboard-severity.severity-medium {
+  color: #f97316;
+}
+
+.dashboard-severity.severity-low {
+  color: #22c55e;
+}
+
+/* No rank numbers / bullets. */
+.dashboard-supplier-rank,
+.dashboard-feed-status,
+.dashboard-info-count {
+  display: none !important;
+}
+
+.dashboard-supplier-row {
+  align-items: center;
+}
+
+.dashboard-supplier-score {
+  flex: 0 0 auto;
+  min-width: 32px;
+  font-size: 1.05rem;
+  font-weight: 900;
+  text-align: right;
+}
+
+.dashboard-risk-bar {
+  width: 100%;
+  height: 5px;
+  margin-top: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #263f5e;
+}
+
+.dashboard-risk-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  transition: width 300ms ease, background-color 300ms ease;
+}
+
+.dashboard-inline-empty {
+  color: #9fb0c8;
+  font-size: 0.9rem;
+}
+
+.dashboard-info-link {
+  display: inline-block;
+  width: fit-content;
+  margin-top: auto;
+  padding-top: 18px;
+  color: #f4c400;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 200ms ease, color 200ms ease;
+}
+
+.dashboard-info-link:hover {
+  color: #ffd928;
+  transform: translateX(3px);
+}
+
+@media (max-width: 1100px) {
+  .dashboard-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-info-card {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .dashboard-map-dashboard {
+    padding: 12px;
+  }
+
+  .dashboard-info-card {
+    padding: 24px;
+  }
+
+  .dashboard-info-title {
+    font-size: 2rem;
+  }
+}
+
+
+/* ── Supplier risk colours ─────────────────────────────── */
+/* These use !important so older index.css rules cannot force every bar yellow. */
+
+.dashboard-risk-bar > span.risk-green {
+  background: #22c55e !important;
+}
+
+.dashboard-risk-bar > span.risk-orange {
+  background: #f59e0b !important;
+}
+
+.dashboard-risk-bar > span.risk-red {
+  background: #ef4444 !important;
+}
+
+.dashboard-risk-bar > span.risk-dark-red {
+  background: #8b0000 !important;
+}
+
+.dashboard-supplier-score.risk-green {
+  color: #22c55e !important;
+}
+
+.dashboard-supplier-score.risk-orange {
+  color: #f59e0b !important;
+}
+
+.dashboard-supplier-score.risk-red {
+  color: #ef4444 !important;
+}
+
+.dashboard-supplier-score.risk-dark-red {
+  color: #8b0000 !important;
+}
+
+
+/* ── Risk Score Trend ───────────────────────────────────── */
+.dashboard-risk-trend-card {
+  width: 100%;
+  min-width: 0;
+  margin-top: 0;
+  padding: 28px 32px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  background: #0b1f3a;
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.20);
+}
+
+.dashboard-risk-trend-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.dashboard-risk-trend-title {
+  margin: 0;
+  color: #F4C400;
+  font-size: clamp(1.6rem, 2.3vw, 2.2rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+}
+
+.dashboard-risk-trend-subtitle {
+  margin: 7px 0 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.92rem;
+}
+
+.dashboard-risk-trend-chart {
+  width: 100%;
+  min-height: 300px;
+  margin-top: 10px;
+}
+
+.dashboard-risk-trend-chart .recharts-cartesian-grid-horizontal line {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+.dashboard-risk-trend-empty {
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 1000px) {
+  .dashboard-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-risk-trend-card {
+    padding: 24px 20px;
+  }
+}
+/* =========================================================
+   RISK SCORE TREND — GRID BACKGROUND
+   ========================================================= */
+
+.dashboard-risk-trend-card {
+  --trend-grid-color: #E1E1E1;
+
+  background-color: #F3F3F3 !important;
+
+  background-image:
+    linear-gradient(
+      0deg,
+      transparent 24%,
+      var(--trend-grid-color) 25%,
+      var(--trend-grid-color) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--trend-grid-color) 75%,
+      var(--trend-grid-color) 76%,
+      transparent 77%,
+      transparent
+    ),
+    linear-gradient(
+      90deg,
+      transparent 24%,
+      var(--trend-grid-color) 25%,
+      var(--trend-grid-color) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--trend-grid-color) 75%,
+      var(--trend-grid-color) 76%,
+      transparent 77%,
+      transparent
+    );
+
+  background-size: 55px 55px;
+}.dashboard-risk-trend-card .recharts-cartesian-axis-tick text {
+  fill: #183153 !important;
+}
+
+.dashboard-risk-trend-card .dashboard-risk-trend-subtitle {
+  color: #183153 !important;
+}
+
+.dashboard-risk-trend-card .recharts-cartesian-grid-horizontal line {
+  stroke: rgba(24, 49, 83, 0.12) !important;
 }

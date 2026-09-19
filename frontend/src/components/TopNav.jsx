@@ -1,8 +1,10 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import BrandLogo from './BrandLogo.jsx';
 
 const TopNav = ({ companies, selectedCompanyId, onCompanyChange }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   return (
     <>
@@ -71,18 +73,20 @@ const TopNav = ({ companies, selectedCompanyId, onCompanyChange }) => {
         </nav>
 
         <div className="top-nav-actions">
-          <select
-            className="company-select header-company-select"
-            value={selectedCompanyId}
-            onChange={(e) => onCompanyChange(e.target.value)}
-            aria-label="Select company"
-          >
-            {companies.map((company) => (
-              <option key={company.id} value={company.id}>
-                {company.name}
-              </option>
-            ))}
-          </select>
+          {!isHome && (
+            <select
+              className="company-select header-company-select"
+              value={selectedCompanyId}
+              onChange={(e) => onCompanyChange(e.target.value)}
+              aria-label="Select company"
+            >
+              {companies.map((company) => (
+                <option key={company.id} value={company.id}>
+                  {company.name}
+                </option>
+              ))}
+            </select>
+          )}
 
           <button
             type="button"

@@ -109,7 +109,7 @@ const Home = () => {
 
       <section className="home-hero" aria-labelledby="home-title">
         <div className="home-hero-copy">
-          <h1 id="home-title">Know what is coming,<br /><span className="home-title-highlight">Keep supply moving<span className="home-typing-cursor" aria-hidden="true">|</span></span></h1>
+          <h1 id="home-title"><span className="home-title-main home-title-bold">Know what is coming,</span><br /><span className="home-title-highlight">Keep supply moving<span className="home-typing-cursor" aria-hidden="true">|</span></span></h1>
         </div>
       </section>
 
@@ -319,6 +319,11 @@ const Home = () => {
                   </p>
                 </div>
               </article>
+            </div>
+
+            <div className="home-how-to-final">
+              <span>SUPLAI IN ONE FLOW</span>
+              <strong>Supplier → Risk → Network → Simulation → Alternatives → Action</strong>
             </div>
           </div>
         </div>
