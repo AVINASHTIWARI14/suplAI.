@@ -321,10 +321,7 @@ const Home = () => {
               </article>
             </div>
 
-            <div className="home-how-to-final">
-              <span>SUPLAI IN ONE FLOW</span>
-              <strong>Supplier → Risk → Network → Simulation → Alternatives → Action</strong>
-            </div>
+         */}
           </div>
         </div>
       </section>

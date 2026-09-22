@@ -4616,3 +4616,2968 @@ button:not(.modal-close):not(.drawer-close):not(.link-btn):not(.header-login-but
 .dashboard-risk-trend-card .recharts-cartesian-grid-horizontal line {
   stroke: rgba(24, 49, 83, 0.12) !important;
 }
+/* =========================================================
+   SUPPLIER EXPLORER — DASHBOARD DARK BLUE THEME
+   ========================================================= */
+
+.supplier-explorer-page {
+  --supplier-page-bg: #183153;
+  --supplier-panel: #0b1f3a;
+  --supplier-yellow: #f4c400;
+  --supplier-muted: #a9b7ca;
+  --supplier-border: rgba(255, 255, 255, 0.12);
+  min-height: calc(100vh - 70px);
+  width: 100%;
+  padding: 28px 28px 42px;
+  background: #183153;
+  color: #ffffff;
+}
+
+.supplier-explorer-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+
+.supplier-explorer-eyebrow {
+  margin: 0 0 7px;
+  color: #f4c400;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+
+.supplier-explorer-header h1 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -.04em;
+}
+
+.supplier-explorer-subtitle {
+  margin: 8px 0 0;
+  color: #b8c4d4;
+  font-size: .92rem;
+}
+
+.supplier-explorer-count {
+  min-width: 110px;
+  padding: 13px 17px;
+  border: 1px solid rgba(244,196,0,.35);
+  border-radius: 12px;
+  background: #0b1f3a;
+  text-align: center;
+  box-shadow: 0 10px 22px rgba(0,0,0,.14);
+}
+
+.supplier-explorer-count span {
+  display: block;
+  color: #a9b7ca;
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.supplier-explorer-count strong {
+  display: block;
+  margin-top: 4px;
+  color: #f4c400;
+  font-size: 1.55rem;
+}
+
+.supplier-explorer-toolbar {
+  display: grid;
+  grid-template-columns: minmax(260px,1fr) minmax(180px,230px) auto;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 18px;
+  padding: 14px;
+  border: 1px solid var(--supplier-border);
+  border-radius: 14px;
+  background: #0b1f3a;
+  box-shadow: 0 10px 24px rgba(0,0,0,.14);
+}
+
+.supplier-search-wrap { position: relative; }
+
+.supplier-search-icon {
+  position: absolute;
+  top: 50%;
+  left: 13px;
+  transform: translateY(-51%);
+  color: #f4c400;
+  font-size: 1.35rem;
+  pointer-events: none;
+}
+
+.supplier-search-wrap input,
+.supplier-country-wrap select {
+  width: 100%;
+  height: 44px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 9px;
+  outline: none;
+  background: #183153;
+  color: #fff;
+}
+
+.supplier-search-wrap input { padding: 0 14px 0 38px; }
+.supplier-search-wrap input::placeholder { color: #91a1b6; }
+
+.supplier-search-wrap input:focus,
+.supplier-country-wrap select:focus {
+  border-color: #f4c400;
+  box-shadow: 0 0 0 2px rgba(244,196,0,.1);
+}
+
+.supplier-country-wrap { display: grid; gap: 5px; }
+
+.supplier-country-wrap label {
+  color: #a9b7ca;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.supplier-country-wrap select { padding: 0 12px; }
+.supplier-country-wrap select option { background: #0b1f3a; color: #fff; }
+
+.supplier-reset-button {
+  height: 44px;
+  padding: 0 17px;
+  border: 1px solid rgba(244,196,0,.5);
+  border-radius: 9px;
+  background: #f4c400;
+  color: #0b1f3a;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.supplier-reset-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 16px rgba(0,0,0,.2);
+}
+
+.supplier-explorer-content {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 300px;
+  gap: 18px;
+  align-items: start;
+}
+
+.supplier-results { min-width: 0; }
+
+.supplier-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 18px;
+  width: 100%;
+}
+
+.supplier-state-card {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  padding: 28px;
+  border: 1px solid var(--supplier-border);
+  border-radius: 14px;
+  background: #0b1f3a;
+  color: #fff;
+  text-align: center;
+}
+
+.supplier-state-card strong { color: #f4c400; }
+.supplier-state-card span { color: #a9b7ca; font-size: .85rem; }
+
+.supplier-filters-panel {
+  position: sticky;
+  top: 86px;
+  display: grid;
+  gap: 22px;
+  padding: 20px;
+  border: 1px solid rgba(244,196,0,.22);
+  border-radius: 14px;
+  background: #0b1f3a;
+  box-shadow: 0 12px 28px rgba(0,0,0,.18);
+}
+
+.supplier-filters-heading {
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.supplier-filters-heading p {
+  margin: 0 0 4px;
+  color: #f4c400;
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+}
+
+.supplier-filters-heading h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+.supplier-filter-control { display: grid; gap: 8px; }
+
+.supplier-filter-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.supplier-filter-label span {
+  color: #d8e0ea;
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+.supplier-filter-label strong {
+  color: #f4c400;
+  font-size: .82rem;
+}
+
+.supplier-filter-control input[type='range'] {
+  width: 100%;
+  height: 5px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  appearance: none;
+  background: #183153;
+  accent-color: #f4c400;
+  cursor: pointer;
+}
+
+.supplier-filter-control input[type='range']::-webkit-slider-thumb {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #0b1f3a;
+  border-radius: 50%;
+  appearance: none;
+  background: #f4c400;
+}
+
+.supplier-filter-control input[type='range']::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #0b1f3a;
+  border-radius: 50%;
+  background: #f4c400;
+}
+
+.supplier-range-scale {
+  display: flex;
+  justify-content: space-between;
+  color: #70839b;
+  font-size: .65rem;
+}
+
+.supplier-explorer-page .supplier-card {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.supplier-explorer-page .supplier-card:hover {
+  transform: translateY(-4px);
+}
+
+@media (max-width: 1050px) {
+  .supplier-explorer-content { grid-template-columns: 1fr; }
+  .supplier-filters-panel {
+    position: static;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+  .supplier-filters-heading { grid-column: 1 / -1; }
+}
+
+@media (max-width: 760px) {
+  .supplier-explorer-page { padding: 22px 16px 34px; }
+  .supplier-explorer-header { align-items: flex-start; }
+  .supplier-explorer-count { display: none; }
+  .supplier-explorer-toolbar { grid-template-columns: 1fr; }
+  .supplier-grid { grid-template-columns: 1fr; }
+  .supplier-filters-panel { grid-template-columns: 1fr; }
+}
+
+/* Ensure the parent app area behind Supplier Explorer is also Dashboard blue. */
+.main-content:has(.supplier-explorer-page) {
+  background: #183153;
+}
+
+/* =========================================================
+   SUPPLIER PAGE — FOOTER FIX
+   Keep the footer consistent with the Dashboard/Home dark theme.
+   ========================================================= */
+
+.main-content:has(.supplier-explorer-page) {
+  background: #183153 !important;
+  min-height: 100vh;
+}
+
+.main-content:has(.supplier-explorer-page) > .site-footer {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 18px 28px 20px !important;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  align-self: stretch;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+  background: #0b1f3a !important;
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+.main-content:has(.supplier-explorer-page) > .site-footer .site-footer-brand {
+  justify-self: start;
+  color: #f4c400 !important;
+}
+
+.main-content:has(.supplier-explorer-page) > .site-footer .site-footer-brand .logo-ai-text {
+  color: #ffffff !important;
+}
+
+.main-content:has(.supplier-explorer-page) > .site-footer a {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+.main-content:has(.supplier-explorer-page) > .site-footer a:hover {
+  color: #f4c400 !important;
+}
+
+.main-content:has(.supplier-explorer-page) > .site-footer-socials {
+  justify-self: end;
+}
+
+.main-content:has(.supplier-explorer-page) > .site-footer .site-footer-socials a,
+.main-content:has(.supplier-explorer-page) > .site-footer .site-footer-socials svg {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+.main-content:has(.supplier-explorer-page) > .site-footer .site-footer-socials a:hover,
+.main-content:has(.supplier-explorer-page) > .site-footer .site-footer-socials a:hover svg {
+  color: #f4c400 !important;
+  fill: #f4c400 !important;
+}
+
+@media (max-width: 700px) {
+  .main-content:has(.supplier-explorer-page) > .site-footer {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .main-content:has(.supplier-explorer-page) > .site-footer .site-footer-brand,
+  .main-content:has(.supplier-explorer-page) > .site-footer .site-footer-socials {
+    justify-self: center;
+  }
+}
+/* =========================================================
+   SUPPLIER PAGE — FIX FOOTER OVERLAP
+   ========================================================= */
+
+/* Let the app grow with the page instead of forcing everything
+   into exactly one viewport height. */
+.main-content {
+  height: auto !important;
+  min-height: 100vh !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
+
+/* Supplier page must occupy the available page naturally */
+.supplier-explorer-page {
+  min-height: calc(100vh - 70px) !important;
+  height: auto !important;
+  box-sizing: border-box !important;
+  flex: 0 0 auto !important;
+}
+
+/* Footer stays AFTER the supplier content */
+.site-footer {
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+
+  width: 100% !important;
+  margin-top: 0 !important;
+  flex-shrink: 0 !important;
+
+  z-index: 10 !important;
+  box-sizing: border-box !important;
+}
+
+/* Make sure supplier content cannot visually sit over the footer */
+.supplier-explorer-page {
+  position: relative;
+  z-index: 1;
+}
+
+/* Footer styling */
+.site-footer {
+  background: #0b1f3a !important;
+  border-top: 1px solid rgba(255,255,255,.14) !important;
+  color: rgba(255,255,255,.78) !important;
+  padding: 14px 20px 16px !important;
+}
+
+.site-footer-brand {
+  color: #f4c400 !important;
+}
+
+.site-footer-brand .logo-ai-text {
+  color: #ffffff !important;
+}
+
+.site-footer-socials a,
+.site-footer-socials svg {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+.site-footer-socials a:hover,
+.site-footer-socials a:hover svg {
+  color: #f4c400 !important;
+  fill: #f4c400 !important;
+}/* =========================================================
+   SUPPLIER CARDS — DASHBOARD STYLE
+   ========================================================= */
+
+.supplier-explorer-page .supplier-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.supplier-explorer-page .supplier-card {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 382px !important;
+  min-height: 382px !important;
+  box-sizing: border-box !important;
+  padding: 34px !important;
+
+  background: #0b1f3a !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(58, 105, 150, 0.45) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18) !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: center !important;
+  user-select: none !important;
+  cursor: pointer !important;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+
+.supplier-explorer-page .supplier-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(244, 196, 0, 0.45) !important;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.28) !important;
+}
+
+.supplier-explorer-page .supplier-card:active {
+  transform: translateY(-1px) !important;
+}
+
+.supplier-explorer-page .supplier-card-rank {
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid rgba(93, 139, 181, 0.30) !important;
+  color: #b9c5d6 !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+}
+
+.supplier-explorer-page .supplier-card-header {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  padding: 14px 0 !important;
+  border-bottom: 1px solid rgba(93, 139, 181, 0.30) !important;
+}
+
+.supplier-explorer-page .supplier-card-name {
+  min-width: 0 !important;
+  overflow-wrap: anywhere !important;
+  color: #ffffff !important;
+  font-size: 1rem !important;
+  font-weight: 800 !important;
+  text-align: left !important;
+}
+
+.supplier-explorer-page .supplier-card-location {
+  padding: 14px 0 !important;
+  border-bottom: 1px solid rgba(93, 139, 181, 0.30) !important;
+  color: #b9c5d6 !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+}
+
+.supplier-explorer-page .supplier-card-metrics {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  padding: 14px 0 !important;
+  border-bottom: 1px solid rgba(93, 139, 181, 0.30) !important;
+}
+
+.supplier-explorer-page .supplier-card-rating {
+  color: #f4c400 !important;
+  font-size: 0.82rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+}
+
+.supplier-explorer-page .supplier-card-score {
+  font-size: 1rem !important;
+  font-weight: 900 !important;
+  white-space: nowrap !important;
+}
+
+.supplier-explorer-page .supplier-card-composite {
+  padding-top: 14px !important;
+  color: #c4cede !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+}
+
+/* Risk colours */
+.supplier-explorer-page .risk-badge.high {
+  color: #ff3b3b !important;
+}
+
+.supplier-explorer-page .risk-badge.medium {
+  color: #ff6a00 !important;
+}
+
+.supplier-explorer-page .risk-badge.low {
+  color: #22c55e !important;
+}
+
+/* Remove the animated risk dot from supplier cards. */
+.supplier-explorer-page .risk-badge::before {
+  display: none !important;
+}
+
+/* Supplier page heading */
+.supplier-explorer-page .supplier-explorer-eyebrow {
+  display: none !important;
+}
+
+.supplier-explorer-page h1 {
+  color: #f4c400 !important;
+}
+
+@media (max-width: 1100px) {
+  .supplier-explorer-page .supplier-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .supplier-explorer-page .supplier-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .supplier-explorer-page .supplier-card {
+    height: 350px !important;
+    min-height: 350px !important;
+    padding: 26px !important;
+  }
+}
+
+
+/* =========================================================
+   SUPPLIER CARDS — DASHBOARD STYLE + GLOW / BLUR EFFECT
+   ========================================================= */
+
+.supplier-explorer-page .supplier-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+  padding: 0 !important;
+}
+
+/* Base dashboard-style card */
+.supplier-explorer-page .supplier-card {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 382px !important;
+  min-height: 382px !important;
+  margin: 0 !important;
+  padding: 34px !important;
+  box-sizing: border-box !important;
+
+  background: rgba(11, 31, 58, 0.92) !important;
+  color: #ffffff !important;
+
+  border: 1px solid rgba(82, 132, 184, 0.35) !important;
+  border-radius: 14px !important;
+
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.18),
+    0 0 0 rgba(244, 196, 0, 0) !important;
+
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+
+  cursor: pointer !important;
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease,
+    opacity 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease !important;
+
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Dashboard-like grow + glow */
+.supplier-explorer-page .supplier-card:hover {
+  transform: scale(1.035) translateY(-4px) !important;
+  z-index: 5 !important;
+
+  border-color: rgba(244, 196, 0, 0.65) !important;
+
+  box-shadow:
+    0 18px 35px rgba(0, 0, 0, 0.28),
+    0 0 22px rgba(244, 196, 0, 0.16) !important;
+
+  filter: brightness(1.05) !important;
+}
+
+/* Blur/fade the cards that are not being hovered */
+.supplier-explorer-page .supplier-grid:hover > .supplier-card:not(:hover) {
+  filter: blur(2px) brightness(0.72) !important;
+  opacity: 0.62 !important;
+  transform: scale(0.985) !important;
+}
+
+/* Keep hovered card crisp */
+.supplier-explorer-page .supplier-grid:hover > .supplier-card:hover {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* Rank */
+.supplier-explorer-page .supplier-card-rank {
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid rgba(117, 165, 208, 0.25) !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+/* Header */
+.supplier-explorer-page .supplier-card-header {
+  padding: 14px 0 !important;
+  border-bottom: 1px solid rgba(117, 165, 208, 0.25) !important;
+}
+
+.supplier-explorer-page .supplier-card-name {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+/* Location */
+.supplier-explorer-page .supplier-card-location {
+  padding: 14px 0 !important;
+  border-bottom: 1px solid rgba(117, 165, 208, 0.25) !important;
+  color: #b9c7d8 !important;
+}
+
+/* Metrics */
+.supplier-explorer-page .supplier-card-metrics {
+  padding: 14px 0 !important;
+  border-bottom: 1px solid rgba(117, 165, 208, 0.25) !important;
+}
+
+/* Stars */
+.supplier-explorer-page .supplier-card-rating {
+  color: #f4c400 !important;
+}
+
+/* Composite */
+.supplier-explorer-page .supplier-card-composite {
+  padding-top: 14px !important;
+  color: #c4cede !important;
+}
+
+/* Score keeps risk-specific colors from existing markup */
+.supplier-explorer-page .supplier-card-score {
+  font-weight: 900 !important;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .supplier-explorer-page .supplier-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .supplier-explorer-page .supplier-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .supplier-explorer-page .supplier-card {
+    height: 350px !important;
+    min-height: 350px !important;
+  }
+
+  .supplier-explorer-page .supplier-grid:hover > .supplier-card:not(:hover) {
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+/* REMOVE SUPPLIER CARD BLUR EFFECT COMPLETELY */
+
+.supplier-explorer-page .supplier-card,
+.supplier-explorer-page .supplier-card:hover,
+.supplier-explorer-page .supplier-grid:hover > .supplier-card,
+.supplier-explorer-page .supplier-grid:hover > .supplier-card:not(:hover) {
+  filter: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Keep only a small hover lift */
+.supplier-explorer-page .supplier-card:hover {
+  transform: scale(1.035) translateY(-4px) !important;
+  border-color: rgba(82, 132, 184, 0.35) !important;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.28) !important;
+}/* =========================================================
+   SUPPLIER RESET BUTTON — FINAL
+   ========================================================= */
+
+.supplier-explorer-page .supplier-reset-button {
+  background: #f4c400 !important;
+  color: #183153 !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-image: none !important;
+  filter: none !important;
+}
+
+.supplier-explorer-page .supplier-reset-button:hover {
+  background: #f4c400 !important;
+  color: #183153 !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-image: none !important;
+  filter: none !important;
+  transform: translateY(-1px) !important;
+}
+
+.supplier-explorer-page .supplier-reset-button:active {
+  background: #f4c400 !important;
+  color: #183153 !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}/* =========================================================
+   SUPPLIER FILTERS — BETWEEN SEARCH AND CARDS
+   ========================================================= */
+
+.supplier-explorer-page .supplier-explorer-content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 18px !important;
+  width: 100% !important;
+}
+
+
+/* Filter panel */
+.supplier-explorer-page .supplier-filters-panel {
+  order: 1 !important;
+
+  display: grid !important;
+  grid-template-columns: auto repeat(3, minmax(180px, 1fr)) !important;
+  align-items: center !important;
+  gap: 22px !important;
+
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 18px 22px !important;
+
+  box-sizing: border-box !important;
+}
+
+
+/* Filter heading */
+.supplier-explorer-page .supplier-filters-heading {
+  min-width: 130px;
+}
+
+.supplier-explorer-page .supplier-filters-heading p {
+  margin: 0 0 4px !important;
+}
+
+.supplier-explorer-page .supplier-filters-heading h2 {
+  margin: 0 !important;
+}
+
+
+/* Individual sliders */
+.supplier-explorer-page .supplier-filter-control {
+  width: 100% !important;
+}
+
+
+/* Supplier cards come AFTER filters */
+.supplier-explorer-page .supplier-results {
+  order: 2 !important;
+  width: 100% !important;
+}
+
+
+/* Keep cards in 3-column layout */
+.supplier-explorer-page .supplier-grid {
+  width: 100% !important;
+}
+
+
+/* Responsive */
+@media (max-width: 900px) {
+  .supplier-explorer-page .supplier-filters-panel {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .supplier-explorer-page .supplier-filters-heading {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .supplier-explorer-page .supplier-filters-panel {
+    grid-template-columns: 1fr !important;
+  }
+
+  .supplier-explorer-page .supplier-filters-heading {
+    grid-column: auto;
+  }
+}/* =========================================================
+   SUPPLIER FILTER PANEL — YELLOW CARD
+   ========================================================= */
+
+/* Whole filter card */
+.supplier-explorer-page .supplier-filters-panel {
+  background: #f4c400 !important;
+  border: none !important;
+  border-radius: 14px !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18) !important;
+
+  color: #183153 !important;
+}
+
+
+/* Remove FILTERS / Risk Controls text */
+.supplier-explorer-page .supplier-filters-heading {
+  display: none !important;
+}
+
+
+/* Remove all slider labels */
+.supplier-explorer-page .supplier-filter-label {
+  display: none !important;
+}
+
+
+/* Remove 0 / 100 / days text */
+.supplier-explorer-page .supplier-range-scale {
+  display: none !important;
+}
+
+
+/* Make slider controls clean */
+.supplier-explorer-page .supplier-filter-control {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+
+/* Slider itself */
+.supplier-explorer-page .supplier-filter-control input[type="range"] {
+  width: 100% !important;
+  margin: 0 !important;
+  accent-color: #183153 !important;
+}
+
+
+/* Remove any glass/reflection effects */
+.supplier-explorer-page .supplier-filters-panel::before,
+.supplier-explorer-page .supplier-filters-panel::after {
+  display: none !important;
+  content: none !important;
+}
+
+
+/* Responsive */
+@media (max-width: 900px) {
+  .supplier-explorer-page .supplier-filters-panel {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .supplier-explorer-page .supplier-filters-panel {
+    grid-template-columns: 1fr !important;
+  }
+}/* =========================================================
+   SUPPLIER FILTER PANEL
+   ========================================================= */
+
+.supplier-explorer-page .supplier-explorer-content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 18px !important;
+  width: 100% !important;
+}
+
+
+/* Yellow filter card */
+.supplier-explorer-page .supplier-filters-panel {
+  order: 1 !important;
+
+  display: grid !important;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr)) !important;
+
+  align-items: center !important;
+
+  gap: 28px !important;
+
+  width: 100% !important;
+
+  margin: 0 !important;
+
+  padding: 22px 28px !important;
+
+  box-sizing: border-box !important;
+
+  background: #f4c400 !important;
+
+  border: none !important;
+
+  border-radius: 14px !important;
+
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.18) !important;
+
+  color: #183153 !important;
+
+  overflow: visible !important;
+}
+
+
+/* Remove old filter heading */
+.supplier-explorer-page
+.supplier-filters-heading {
+  display: none !important;
+}
+
+
+/* Filter controls */
+.supplier-explorer-page
+.supplier-filter-control {
+  display: flex !important;
+
+  flex-direction: column !important;
+
+  align-items: stretch !important;
+
+  gap: 8px !important;
+
+  width: 100% !important;
+
+  padding: 0 !important;
+
+  margin: 0 !important;
+}
+
+
+/* Slider description */
+.supplier-explorer-page
+.supplier-filter-label {
+  display: block !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+
+  color: #183153 !important;
+
+  font-size: 0.85rem !important;
+
+  font-weight: 800 !important;
+
+  line-height: 1.2 !important;
+}
+
+
+/* Slider description text */
+.supplier-explorer-page
+.supplier-filter-label span {
+  color: #183153 !important;
+
+  font-weight: 800 !important;
+}
+
+
+/* Slider */
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"] {
+  width: 100% !important;
+
+  height: 6px !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+
+  accent-color: #183153 !important;
+
+  cursor: pointer !important;
+}
+
+
+/* Remove old scale text */
+.supplier-explorer-page
+.supplier-range-scale {
+  display: none !important;
+}
+
+
+/* Remove glass/reflection effects */
+.supplier-explorer-page
+.supplier-filters-panel::before,
+
+.supplier-explorer-page
+.supplier-filters-panel::after {
+  display: none !important;
+
+  content: none !important;
+
+  background: none !important;
+
+  box-shadow: none !important;
+}
+
+
+/* Supplier cards below filters */
+.supplier-explorer-page
+.supplier-results {
+  order: 2 !important;
+
+  width: 100% !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .supplier-explorer-page
+  .supplier-filters-panel {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .supplier-explorer-page
+  .supplier-filters-panel {
+    grid-template-columns:
+      1fr !important;
+
+    padding: 18px !important;
+  }
+
+}
+/* =========================================================
+   SUPPLIER CARDS — COLORFUL HOVER / BLUR DESIGN
+   Based on the provided .cards reference
+   ========================================================= */
+
+
+/* Supplier card grid */
+.supplier-explorer-page .supplier-grid {
+  display: grid !important;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr)) !important;
+
+  gap: 18px !important;
+
+  width: 100% !important;
+
+  max-width: 100% !important;
+
+  overflow: visible !important;
+
+  padding: 0 !important;
+}
+
+
+/* =========================================================
+   BASE SUPPLIER CARD
+   ========================================================= */
+
+.supplier-explorer-page .supplier-card {
+  position: relative !important;
+
+  width: 100% !important;
+
+  min-width: 0 !important;
+
+  height: 380px !important;
+
+  min-height: 380px !important;
+
+  margin: 0 !important;
+
+  padding: 28px !important;
+
+  box-sizing: border-box !important;
+
+  display: flex !important;
+
+  flex-direction: column !important;
+
+  align-items: center !important;
+
+  justify-content: center !important;
+
+  text-align: center !important;
+
+  border: none !important;
+
+  outline: none !important;
+
+  border-radius: 16px !important;
+
+  color: #ffffff !important;
+
+  cursor: pointer !important;
+
+  user-select: none !important;
+
+  overflow: hidden !important;
+
+  transition:
+    transform 400ms ease,
+    filter 400ms ease,
+    opacity 400ms ease,
+    box-shadow 400ms ease !important;
+
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.18) !important;
+}
+
+
+/* =========================================================
+   CARD COLORS
+   Different cards get different colors
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-card:nth-child(6n + 1) {
+  background: #007e9e !important;
+}
+
+.supplier-explorer-page
+.supplier-card:nth-child(6n + 2) {
+  background: #0062ff !important;
+}
+
+.supplier-explorer-page
+.supplier-card:nth-child(6n + 3) {
+  background: #18cd5e !important;
+}
+
+.supplier-explorer-page
+.supplier-card:nth-child(6n + 4) {
+  background: #ff6b00 !important;
+}
+
+.supplier-explorer-page
+.supplier-card:nth-child(6n + 5) {
+  background: #6337d8 !important;
+}
+
+.supplier-explorer-page
+.supplier-card:nth-child(6n + 6) {
+  background: #e32670 !important;
+}
+
+
+/* =========================================================
+   CARD HOVER
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-card:hover {
+  transform: scale(1.08) !important;
+
+  filter: none !important;
+
+  opacity: 1 !important;
+
+  z-index: 10 !important;
+
+  border: none !important;
+
+  outline: none !important;
+
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.28) !important;
+}
+
+
+/* =========================================================
+   BLUR OTHER CARDS ONLY WHEN A CARD IS HOVERED
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-grid:has(.supplier-card:hover)
+.supplier-card:not(:hover) {
+  filter: blur(8px) !important;
+
+  transform: scale(0.9) !important;
+
+  opacity: 0.72 !important;
+}
+
+
+/* =========================================================
+   WHEN CURSOR IS NOT ON A CARD
+   EVERYTHING NORMAL
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-grid:not(:has(.supplier-card:hover))
+.supplier-card {
+  filter: none !important;
+
+  transform: none !important;
+
+  opacity: 1 !important;
+}
+
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-card h3 {
+  color: #ffffff !important;
+}
+
+
+.supplier-explorer-page
+.supplier-card p {
+  color: #ffffff !important;
+}
+
+
+/* Keep stars visible */
+.supplier-explorer-page
+.supplier-card .supplier-stars {
+  color: #f4c400 !important;
+}
+
+
+/* =========================================================
+   REMOVE ANY OLD CARD OUTLINE / GLOW
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-card::before,
+
+.supplier-explorer-page
+.supplier-card::after {
+  display: none !important;
+
+  content: none !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  .supplier-explorer-page
+  .supplier-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+  }
+
+}
+
+
+@media (max-width: 650px) {
+
+  .supplier-explorer-page
+  .supplier-grid {
+    grid-template-columns:
+      1fr !important;
+
+    gap: 16px !important;
+  }
+
+  .supplier-explorer-page
+  .supplier-card {
+    height: 340px !important;
+
+    min-height: 340px !important;
+  }
+
+}/* =========================================================
+   SUPPLIER CARDS — NAVBAR DARK BLUE
+   ========================================================= */
+
+.supplier-explorer-page .supplier-card {
+  background: #0b1f3a !important;
+  color: #ffffff !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* Override all individual card colors */
+.supplier-explorer-page .supplier-card:nth-child(6n + 1),
+.supplier-explorer-page .supplier-card:nth-child(6n + 2),
+.supplier-explorer-page .supplier-card:nth-child(6n + 3),
+.supplier-explorer-page .supplier-card:nth-child(6n + 4),
+.supplier-explorer-page .supplier-card:nth-child(6n + 5),
+.supplier-explorer-page .supplier-card:nth-child(6n + 6) {
+  background: #0b1f3a !important;
+}
+
+/* Hovered card */
+.supplier-explorer-page .supplier-card:hover {
+  background: #0b1f3a !important;
+  border: none !important;
+  outline: none !important;
+  transform: scale(1.08) !important;
+  filter: none !important;
+  opacity: 1 !important;
+  z-index: 10 !important;
+}
+
+/* Other cards blur only while a card is hovered */
+.supplier-explorer-page
+.supplier-grid:has(.supplier-card:hover)
+.supplier-card:not(:hover) {
+  background: #0b1f3a !important;
+  filter: blur(8px) !important;
+  transform: scale(0.9) !important;
+  opacity: 0.72 !important;
+}
+
+/* Normal state */
+.supplier-explorer-page
+.supplier-grid:not(:has(.supplier-card:hover))
+.supplier-card {
+  background: #0b1f3a !important;
+  filter: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+}/* =========================================================
+   SUPPLIER FILTER SLIDERS — WHITE 3D TRACK
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"] {
+  background: transparent !important;
+  accent-color: #183153 !important;
+  height: 10px !important;
+  cursor: pointer !important;
+}
+
+
+/* =========================================================
+   CHROME / EDGE — WHITE 3D TRACK
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-runnable-track {
+
+  height: 8px !important;
+
+  background: #ffffff !important;
+
+  border-radius: 999px !important;
+
+  /* realistic raised / 3D effect */
+  box-shadow:
+    inset 0 2px 3px rgba(0, 0, 0, 0.20),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.95),
+    0 2px 4px rgba(24, 49, 83, 0.28) !important;
+
+  border: 1px solid rgba(24, 49, 83, 0.12) !important;
+}
+
+
+/* =========================================================
+   CHROME / EDGE — DARK BLUE 3D THUMB
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-thumb {
+
+  appearance: none !important;
+  -webkit-appearance: none !important;
+
+  width: 18px !important;
+  height: 18px !important;
+
+  margin-top: -6px !important;
+
+  border-radius: 50% !important;
+
+  background: #183153 !important;
+
+  border: 2px solid #ffffff !important;
+
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.20) !important;
+
+  cursor: grab !important;
+}
+
+
+/* Active thumb */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-thumb:active {
+
+  cursor: grabbing !important;
+
+  box-shadow:
+    0 3px 7px rgba(0, 0, 0, 0.40),
+    inset 0 1px 2px rgba(255, 255, 255, 0.25) !important;
+}
+
+
+/* =========================================================
+   FIREFOX — WHITE 3D TRACK
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-moz-range-track {
+
+  height: 8px !important;
+
+  background: #ffffff !important;
+
+  border-radius: 999px !important;
+
+  box-shadow:
+    inset 0 2px 3px rgba(0, 0, 0, 0.20),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.95),
+    0 2px 4px rgba(24, 49, 83, 0.28) !important;
+
+  border: 1px solid rgba(24, 49, 83, 0.12) !important;
+}
+
+
+/* Firefox thumb */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-moz-range-thumb {
+
+  width: 18px !important;
+
+  height: 18px !important;
+
+  border-radius: 50% !important;
+
+  background: #183153 !important;
+
+  border: 2px solid #ffffff !important;
+
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.20) !important;
+
+  cursor: grab !important;
+}/* =========================================================
+   SUPPLIER FILTER SLIDERS — BACKGROUND BLUE 3D
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px !important;
+
+  background: #183153 !important;
+
+  border-radius: 999px !important;
+
+  box-shadow:
+    inset 0 2px 3px rgba(0, 0, 0, 0.30),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.12),
+    0 2px 4px rgba(24, 49, 83, 0.35) !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+
+/* Dark-blue thumb */
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+
+  width: 18px !important;
+  height: 18px !important;
+
+  margin-top: -6px !important;
+
+  border-radius: 50% !important;
+
+  background: #0b1f3a !important;
+
+  border: 2px solid #183153 !important;
+
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.45),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15) !important;
+
+  cursor: grab !important;
+}
+
+
+/* Firefox */
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-moz-range-track {
+  height: 8px !important;
+
+  background: #183153 !important;
+
+  border-radius: 999px !important;
+
+  box-shadow:
+    inset 0 2px 3px rgba(0, 0, 0, 0.30),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.12),
+    0 2px 4px rgba(24, 49, 83, 0.35) !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+
+/* Firefox thumb */
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-moz-range-thumb {
+  width: 18px !important;
+  height: 18px !important;
+
+  border-radius: 50% !important;
+
+  background: #0b1f3a !important;
+
+  border: 2px solid #183153 !important;
+
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.45),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15) !important;
+}/* =========================================================
+   SUPPLIER FILTER SLIDERS — FINAL KNOB + LABELS
+   ========================================================= */
+
+
+/* Bigger + bolder slider labels */
+.supplier-explorer-page
+.supplier-filter-label {
+  font-size: 1rem !important;
+  font-weight: 900 !important;
+  line-height: 1.25 !important;
+  color: #183153 !important;
+}
+
+.supplier-explorer-page
+.supplier-filter-label span {
+  font-size: 1rem !important;
+  font-weight: 900 !important;
+  color: #183153 !important;
+}
+
+.supplier-explorer-page
+.supplier-filter-label strong {
+  font-size: 1rem !important;
+  font-weight: 900 !important;
+  color: #183153 !important;
+}
+
+
+/* =========================================================
+   WHITE SLIDER KNOB — CHROME / EDGE
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+
+  width: 19px !important;
+  height: 19px !important;
+
+  margin-top: -6px !important;
+
+  border-radius: 50% !important;
+
+  background: #ffffff !important;
+
+  border: 2px solid #183153 !important;
+
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.38),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9) !important;
+
+  cursor: grab !important;
+}
+
+
+/* Active knob */
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-thumb:active {
+  cursor: grabbing !important;
+
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.45),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9) !important;
+}
+
+
+/* =========================================================
+   WHITE SLIDER KNOB — FIREFOX
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-moz-range-thumb {
+  width: 19px !important;
+  height: 19px !important;
+
+  border-radius: 50% !important;
+
+  background: #ffffff !important;
+
+  border: 2px solid #183153 !important;
+
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.38),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9) !important;
+
+  cursor: grab !important;
+}/* ============================================================
+   SUPPLIER CARDS — FINAL OVERRIDE
+   ============================================================ */
+
+
+/* CARD */
+
+.supplier-explorer-page
+.supplier-grid
+.supplier-card {
+  width: 100% !important;
+
+  height: 250px !important;
+  min-height: 250px !important;
+
+  box-sizing: border-box !important;
+
+  padding: 28px 30px !important;
+
+  background: #0b1f3a !important;
+
+  color: #ffffff !important;
+
+  border: none !important;
+  outline: none !important;
+
+  border-radius: 14px !important;
+
+  box-shadow: none !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+
+  justify-content: flex-start !important;
+
+  text-align: left !important;
+
+  position: relative !important;
+
+  overflow: hidden !important;
+
+  cursor: pointer !important;
+
+  transition:
+    transform 0.4s ease,
+    filter 0.4s ease,
+    opacity 0.4s ease !important;
+}
+
+
+/* ============================================================
+   TITLE + RISK
+   ============================================================ */
+
+.supplier-explorer-page
+.supplier-grid
+.supplier-card
+.supplier-card-header {
+  display: flex !important;
+
+  align-items: flex-start !important;
+
+  justify-content: space-between !important;
+
+  width: 100% !important;
+
+  gap: 20px !important;
+
+  padding: 0 !important;
+
+  margin: 0 !important;
+
+  border: none !important;
+}
+
+
+/* ============================================================
+   SUPPLIER TITLE
+   ============================================================ */
+
+/* Higher specificity than the old h3 rule */
+
+.supplier-explorer-page
+.supplier-grid
+.supplier-card
+h3.supplier-card-name {
+  display: block !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: #f4c400 !important;
+
+  font-size: 1.55rem !important;
+
+  font-weight: 900 !important;
+
+  line-height: 1.15 !important;
+
+  letter-spacing: -0.02em !important;
+
+  text-align: left !important;
+
+  flex: 1 !important;
+
+  min-width: 0 !important;
+
+  border: none !important;
+}
+
+
+/* ============================================================
+   HIGH / MEDIUM / LOW
+   ============================================================ */
+
+.supplier-explorer-page
+.supplier-grid
+.supplier-card
+.supplier-risk {
+  display: block !important;
+
+  flex-shrink: 0 !important;
+
+  margin: 3px 0 0 !important;
+  padding: 0 !important;
+
+  font-size: 0.9rem !important;
+
+  font-weight: 900 !important;
+
+  line-height: 1.2 !important;
+
+  text-align: right !important;
+
+  border: none !important;
+}
+
+.supplier-explorer-page
+.supplier-grid
+.supplier-card
+.supplier-risk-high {
+  color: #ff3b3b !important;
+}
+
+.supplier-explorer-page
+.supplier-grid
+.supplier-card
+.supplier-risk-medium {
+  color: #ff8a00 !important;
+}
+
+.supplier-explorer-page
+.supplier-grid
+.supplier-card
+.supplier-risk-low {
+  color: #18d86b !important;
+}
+
+
+/* ============================================================
+   SUPPLIER INFO
+   ============================================================ */
+
+.supplier-explorer-page
+.supplier-grid
+.supplier-card
+p.supplier-card-meta {
+  display: block !important;
+
+  margin: 8px 0 0 !important;
+  padding: 0 !important;
+
+  color: #ffffff !important;
+
+  font-size: 1rem !important;
+
+  font-weight: 500 !important;
+
+  line-height: 1.3 !important;
+
+  text-align: left !important;
+
+  border: none !important;
+}
+
+
+/* ============================================================
+   METRICS CONTAINER
+   ============================================================ */
+
+.supplier-explorer-page
+.supplier-grid
+.supplier-card
+.supplier-card-stats {
+  display: grid !important;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr)) !important;
+
+  width: 100% !important;
+
+  margin-top: auto !important;
+
+  padding: 0 !important;
+
+  border: none !important;
+}
+
+
+/* ============================================================
+   EACH METRIC
+   ============================================================ */
+
+.supplier-explorer-page
+.supplier-grid
+.supplier-card
+.supplier-stat {
+  display: flex !important;
+
+  flex-direction: column !important;
+
+  align-items: center !important;
+
+  justify-content: center !important;
+
+  min-width: 0 !important;
+
+  height: 65px !important;
+
+  padding: 0 20px !important;
+
+  box-sizing: border-box !important;
+
+  text-align: center !important;
+
+  border-left:
+    1px solid rgba(82, 132, 184, 0.6) !important;
+}
+
+
+/* First metric has no line on left */
+
+.supplier-explorer-page
+.supplier-grid
+.supplier-card
+.supplier-stat:first-child {
+  padding-left: 0 !important;
+
+  border-left: none !important;
+}
+
+
+/* Last metric */
+
+.supplier-explorer-page
+.supplier-grid
+.supplier-card
+.supplier-stat:last-child {
+  padding-right: 0 !important;
+}
+
+
+/* ============================================================
+   METRIC LABEL
+   ============================================================ */
+
+.supplier-explorer-page
+.supplier-grid
+.supplier-card
+.supplier-stat
+span {
+  display: block !important;
+
+  margin: 0 0 7px !important;
+  padding: 0 !important;
+
+  color: rgba(255, 255, 255, 0.72) !important;
+
+  font-size: 0.84rem !important;
+
+  font-weight: 600 !important;
+
+  line-height: 1.2 !important;
+
+  text-align: center !important;
+
+  border: none !important;
+}
+
+
+/* ============================================================
+   METRIC VALUE
+   ============================================================ */
+
+.supplier-explorer-page
+.supplier-grid
+.supplier-card
+.supplier-stat
+strong {
+  display: block !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: #ffffff !important;
+
+  font-size: 1.2rem !important;
+
+  font-weight: 900 !important;
+
+  line-height: 1.2 !important;
+
+  text-align: center !important;
+
+  border: none !important;
+}
+
+
+/* ============================================================
+   REMOVE OLD CARD ELEMENTS IF ANY REMAIN
+   ============================================================ */
+
+.supplier-explorer-page
+.supplier-card
+.supplier-card-rank,
+
+.supplier-explorer-page
+.supplier-card
+.supplier-stars,
+
+.supplier-explorer-page
+.supplier-card
+.supplier-card-rating,
+
+.supplier-explorer-page
+.supplier-card
+.supplier-card-score,
+
+.supplier-explorer-page
+.supplier-card
+.supplier-card-composite,
+
+.supplier-explorer-page
+.supplier-card
+.supplier-card-location,
+
+.supplier-explorer-page
+.supplier-card
+.supplier-card-metrics {
+  display: none !important;
+}
+
+
+/* ============================================================
+   REMOVE OLD CARD LINES
+   ============================================================ */
+
+.supplier-explorer-page
+.supplier-card::before,
+
+.supplier-explorer-page
+.supplier-card::after {
+  display: none !important;
+
+  content: none !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+}
+
+
+/* ============================================================
+   HOVER — GROW
+   ============================================================ */
+
+.supplier-explorer-page
+.supplier-grid
+.supplier-card:hover {
+  transform: scale(1.045) !important;
+
+  filter: none !important;
+
+  opacity: 1 !important;
+
+  z-index: 20 !important;
+
+  background: #0b1f3a !important;
+
+  border: none !important;
+
+  box-shadow:
+    0 18px 35px rgba(0, 0, 0, 0.28) !important;
+}
+
+
+/* ============================================================
+   OTHER CARDS — BLUR + SHRINK
+   ============================================================ */
+
+.supplier-explorer-page
+.supplier-grid:has(.supplier-card:hover)
+.supplier-card:not(:hover) {
+  filter: blur(6px) !important;
+
+  transform: scale(0.94) !important;
+
+  opacity: 0.65 !important;
+
+  background: #0b1f3a !important;
+}
+
+
+/* ============================================================
+   NORMAL STATE
+   ============================================================ */
+
+.supplier-explorer-page
+.supplier-grid:not(:has(.supplier-card:hover))
+.supplier-card {
+  filter: none !important;
+
+  transform: none !important;
+
+  opacity: 1 !important;
+}
+
+
+/* ============================================================
+   GRID
+   ============================================================ */
+
+.supplier-explorer-page
+.supplier-grid {
+  display: grid !important;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr)) !important;
+
+  gap: 16px !important;
+
+  width: 100% !important;
+
+  overflow: visible !important;
+
+  padding: 0 !important;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1050px) {
+
+  .supplier-explorer-page
+  .supplier-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .supplier-explorer-page
+  .supplier-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .supplier-explorer-page
+  .supplier-card {
+    height: 230px !important;
+    min-height: 230px !important;
+  }
+
+  .supplier-explorer-page
+  .supplier-card
+  h3.supplier-card-name {
+    font-size: 1.3rem !important;
+  }
+
+}/* Supplier search box */
+.supplier-explorer-page .supplier-search-wrap {
+  background: #ffffff !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.supplier-explorer-page .supplier-search-wrap input {
+  background: #ffffff !important;
+  color: #183153 !important;
+  border: none !important;
+}
+
+.supplier-explorer-page .supplier-search-wrap input::placeholder {
+  color: #70839b !important;
+  opacity: 1 !important;
+}
+
+.supplier-explorer-page .supplier-search-icon {
+  color: #183153 !important;
+}/* =========================================================
+   SUPPLIER TOOLBAR — CLEAN ALIGNMENT
+   ========================================================= */
+
+.supplier-explorer-page .supplier-explorer-toolbar {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 220px 110px !important;
+  align-items: center !important;
+  gap: 14px !important;
+
+  /* Remove dark blue card/background */
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  padding: 0 !important;
+  margin: 0 0 24px !important;
+}
+
+
+/* SEARCH BOX */
+
+.supplier-explorer-page .supplier-search-wrap {
+  width: 100% !important;
+  height: 46px !important;
+  box-sizing: border-box !important;
+
+  display: flex !important;
+  align-items: center !important;
+
+  background: #ffffff !important;
+  border: none !important;
+  border-radius: 10px !important;
+
+  padding: 0 14px !important;
+
+  box-shadow:
+    0 4px 12px rgba(11, 31, 58, 0.12) !important;
+}
+
+.supplier-explorer-page .supplier-search-icon {
+  color: #183153 !important;
+  flex-shrink: 0 !important;
+  margin-right: 9px !important;
+}
+
+.supplier-explorer-page .supplier-search-wrap input {
+  width: 100% !important;
+  height: 100% !important;
+
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+
+  color: #183153 !important;
+  font-size: 0.92rem !important;
+}
+
+.supplier-explorer-page .supplier-search-wrap input::placeholder {
+  color: #70839b !important;
+  opacity: 1 !important;
+}
+
+
+/* COUNTRY DROPDOWN */
+
+.supplier-explorer-page .supplier-country-wrap {
+  width: 100% !important;
+
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.supplier-explorer-page .supplier-country-wrap label {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+}
+
+.supplier-explorer-page .supplier-country-wrap select {
+  width: 100% !important;
+  height: 46px !important;
+  box-sizing: border-box !important;
+
+  background: #ffffff !important;
+  color: #183153 !important;
+
+  border: none !important;
+  border-radius: 10px !important;
+
+  padding: 0 12px !important;
+  outline: none !important;
+
+  box-shadow:
+    0 4px 12px rgba(11, 31, 58, 0.12) !important;
+
+  cursor: pointer !important;
+}
+
+
+/* RESET BUTTON */
+
+.supplier-explorer-page .supplier-reset-button {
+  height: 46px !important;
+  width: 110px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  background: #f4c400 !important;
+  color: #183153 !important;
+
+  border: none !important;
+  border-radius: 10px !important;
+
+  font-weight: 800 !important;
+  font-size: 0.88rem !important;
+
+  cursor: pointer !important;
+
+  box-shadow:
+    0 4px 12px rgba(11, 31, 58, 0.14) !important;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease !important;
+}
+
+.supplier-explorer-page .supplier-reset-button:hover {
+  transform: translateY(-2px) !important;
+
+  box-shadow:
+    0 7px 16px rgba(11, 31, 58, 0.20) !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 850px) {
+  .supplier-explorer-page .supplier-explorer-toolbar {
+    grid-template-columns: 1fr 180px 100px !important;
+  }
+
+  .supplier-explorer-page .supplier-country-wrap label {
+    display: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .supplier-explorer-page .supplier-explorer-toolbar {
+    grid-template-columns: 1fr !important;
+  }
+
+  .supplier-explorer-page .supplier-country-wrap {
+    display: grid !important;
+    grid-template-columns: auto 1fr !important;
+  }
+
+  .supplier-explorer-page .supplier-country-wrap label {
+    display: block !important;
+  }
+
+  .supplier-explorer-page .supplier-reset-button {
+    width: 100% !important;
+  }
+}/* =========================================================
+   COUNTRY DROPDOWN
+   ========================================================= */
+
+.supplier-explorer-page .supplier-country-wrap select {
+  width: 100% !important;
+  height: 46px !important;
+
+  padding: 0 42px 0 14px !important;
+
+  background-color: #ffffff !important;
+  color: #183153 !important;
+
+  border: none !important;
+  border-radius: 10px !important;
+
+  outline: none !important;
+
+  box-shadow:
+    0 4px 12px rgba(11, 31, 58, 0.12) !important;
+
+  cursor: pointer !important;
+}/* =========================================================
+   SUPPLIER FILTER SLIDERS
+   ========================================================= */
+
+.supplier-explorer-page .supplier-filters-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 26px !important;
+
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  padding: 4px 0 !important;
+}
+
+
+/* Individual filter wrapper */
+
+.supplier-explorer-page .supplier-filter-control {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  padding: 0 !important;
+  min-height: unset !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+
+/* Label */
+
+.supplier-explorer-page .supplier-filter-label {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  color: #ffffff !important;
+}
+
+.supplier-explorer-page .supplier-filter-label span {
+  color: #ffffff !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+}
+
+.supplier-explorer-page .supplier-filter-label strong {
+  color: #f4c400 !important;
+  font-size: 0.85rem !important;
+}
+
+
+/* =========================================================
+   RANGE SLIDER
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"] {
+
+  --thumb-d: 2em;
+  --thumb-r: 1em;
+  --thumb-g: 0.5em;
+
+  --track-h: 0.25em;
+  --track-r: 1.5em;
+
+  --track-c: #dcdcdc;
+
+  --x: calc(
+    var(--thumb-r) +
+    (var(--val) / 100) *
+    (100% - var(--thumb-d))
+  );
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 100% !important;
+  height: 2em !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+
+  color: #f4c400;
+
+  font: inherit;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   WEBKIT TRACK
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-runnable-track {
+
+  height: var(--track-h);
+
+  background:
+    radial-gradient(
+      circle var(--track-r) at 100%,
+      transparent 100%,
+      currentColor
+    )
+    0 / var(--x),
+
+    radial-gradient(
+      circle var(--track-r) at 0,
+      transparent 100%,
+      var(--track-c)
+    )
+    100% /
+    calc(100% - var(--x));
+
+  background-repeat: no-repeat;
+
+  border-radius: 999px;
+}
+
+
+/* =========================================================
+   WEBKIT THUMB
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-thumb {
+
+  -webkit-appearance: none;
+  appearance: none;
+
+  box-sizing: border-box;
+
+  width: var(--thumb-d);
+  height: var(--thumb-d);
+
+  margin-top: calc(
+    0.5 * var(--track-h) - var(--thumb-r)
+  );
+
+  border: solid 3px #f4c400;
+
+  border-radius: 50%;
+
+  background: #183153;
+
+  box-shadow:
+    0 3px 7px rgba(0, 0, 0, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15);
+
+  cursor: grab;
+}
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-thumb:active {
+  cursor: grabbing;
+}
+
+
+/* =========================================================
+   FIREFOX TRACK
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-moz-range-track {
+
+  height: var(--track-h);
+
+  background:
+    linear-gradient(
+      to right,
+      #f4c400 0%,
+      #f4c400 var(--val),
+      var(--track-c) var(--val),
+      var(--track-c) 100%
+    );
+
+  border-radius: 999px;
+}
+
+
+/* =========================================================
+   FIREFOX THUMB
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-moz-range-thumb {
+
+  box-sizing: border-box;
+
+  width: var(--thumb-d);
+  height: var(--thumb-d);
+
+  border: solid 3px #f4c400;
+
+  border-radius: 50%;
+
+  background: #183153;
+
+  box-shadow:
+    0 3px 7px rgba(0, 0, 0, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15);
+
+  cursor: grab;
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]:focus {
+  outline: none;
+}
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]:focus-visible {
+  outline: 2px solid rgba(244, 196, 0, 0.35);
+  outline-offset: 5px;
+}/* =========================================================
+   SUPPLIER FILTER SLIDERS
+   ========================================================= */
+
+.supplier-explorer-page .supplier-filters-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 26px !important;
+
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  padding: 4px 0 !important;
+}
+
+
+/* Individual filter wrapper */
+
+.supplier-explorer-page .supplier-filter-control {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  padding: 0 !important;
+  min-height: unset !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+
+/* Label */
+
+.supplier-explorer-page .supplier-filter-label {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  color: #ffffff !important;
+}
+
+.supplier-explorer-page .supplier-filter-label span {
+  color: #ffffff !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+}
+
+.supplier-explorer-page .supplier-filter-label strong {
+  color: #f4c400 !important;
+  font-size: 0.85rem !important;
+}
+
+
+/* =========================================================
+   RANGE SLIDER
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"] {
+
+  --thumb-d: 2em;
+  --thumb-r: 1em;
+  --thumb-g: 0.5em;
+
+  --track-h: 0.25em;
+  --track-r: 1.5em;
+
+  --track-c: #dcdcdc;
+
+  --x: calc(
+    var(--thumb-r) +
+    (var(--val) / 100) *
+    (100% - var(--thumb-d))
+  );
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 100% !important;
+  height: 2em !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+
+  color: #f4c400;
+
+  font: inherit;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   WEBKIT TRACK
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-runnable-track {
+
+  height: var(--track-h);
+
+  background:
+    radial-gradient(
+      circle var(--track-r) at 100%,
+      transparent 100%,
+      currentColor
+    )
+    0 / var(--x),
+
+    radial-gradient(
+      circle var(--track-r) at 0,
+      transparent 100%,
+      var(--track-c)
+    )
+    100% /
+    calc(100% - var(--x));
+
+  background-repeat: no-repeat;
+
+  border-radius: 999px;
+}
+
+
+/* =========================================================
+   WEBKIT THUMB
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-thumb {
+
+  -webkit-appearance: none;
+  appearance: none;
+
+  box-sizing: border-box;
+
+  width: var(--thumb-d);
+  height: var(--thumb-d);
+
+  margin-top: calc(
+    0.5 * var(--track-h) - var(--thumb-r)
+  );
+
+  border: solid 3px #f4c400;
+
+  border-radius: 50%;
+
+  background: #183153;
+
+  box-shadow:
+    0 3px 7px rgba(0, 0, 0, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15);
+
+  cursor: grab;
+}
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-thumb:active {
+  cursor: grabbing;
+}
+
+
+/* =========================================================
+   FIREFOX TRACK
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-moz-range-track {
+
+  height: var(--track-h);
+
+  background:
+    linear-gradient(
+      to right,
+      #f4c400 0%,
+      #f4c400 var(--val),
+      var(--track-c) var(--val),
+      var(--track-c) 100%
+    );
+
+  border-radius: 999px;
+}
+
+
+/* =========================================================
+   FIREFOX THUMB
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-moz-range-thumb {
+
+  box-sizing: border-box;
+
+  width: var(--thumb-d);
+  height: var(--thumb-d);
+
+  border: solid 3px #f4c400;
+
+  border-radius: 50%;
+
+  background: #183153;
+
+  box-shadow:
+    0 3px 7px rgba(0, 0, 0, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15);
+
+  cursor: grab;
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]:focus {
+  outline: none;
+}
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]:focus-visible {
+  outline: 2px solid rgba(244, 196, 0, 0.35);
+  outline-offset: 5px;
+}
+
+/* =========================================================
+   SUPPLIER EXPLORER — FINAL OVERRIDES
+   ========================================================= */
+
+.supplier-explorer-page{width:100%;min-height:100%;padding:28px;box-sizing:border-box;background:#183153;color:#fff}
+.supplier-explorer-page .supplier-explorer-toolbar{display:grid!important;grid-template-columns:minmax(0,1fr) 220px 110px!important;align-items:center!important;gap:14px!important;width:100%!important;margin:0 0 26px!important;padding:0!important;background:transparent!important;border:none!important;box-shadow:none!important}
+.supplier-explorer-page .supplier-search-wrap{position:relative!important;width:100%!important;height:46px!important;background:#fff!important;border:none!important;border-radius:10px!important;overflow:hidden!important;box-shadow:0 5px 14px rgba(0,0,0,.14)!important}
+.supplier-explorer-page .supplier-search-icon{position:absolute!important;top:50%!important;left:14px!important;transform:translateY(-50%)!important;color:#183153!important;font-size:1.25rem!important;pointer-events:none!important;z-index:2!important}
+.supplier-explorer-page .supplier-search-wrap input{width:100%!important;height:46px!important;box-sizing:border-box!important;padding:0 14px 0 40px!important;background:#fff!important;color:#183153!important;border:none!important;border-radius:10px!important;outline:none!important;box-shadow:none!important}
+.supplier-explorer-page .supplier-search-wrap input::placeholder{color:#70839b!important;opacity:1!important}
+.supplier-explorer-page .supplier-country-wrap{width:100%!important;height:46px!important}
+.supplier-explorer-page .supplier-country-wrap label{display:none!important}
+.supplier-explorer-page .supplier-country-wrap select{width:100%!important;height:46px!important;box-sizing:border-box!important;padding:0 42px 0 14px!important;background:#fff!important;color:#183153!important;border:none!important;border-radius:10px!important;outline:none!important;box-shadow:0 5px 14px rgba(0,0,0,.14)!important}
+.supplier-explorer-page .supplier-country-wrap select option{background:#fff!important;color:#183153!important}
+.supplier-explorer-page .supplier-reset-button{width:110px!important;height:46px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;background:#f4c400!important;color:#183153!important;border:none!important;border-radius:10px!important;font-weight:800!important;cursor:pointer!important;box-shadow:0 5px 14px rgba(0,0,0,.14)!important;transition:transform .2s ease,box-shadow .2s ease!important}
+.supplier-explorer-page .supplier-reset-button:hover{transform:translateY(-2px)!important;box-shadow:0 8px 18px rgba(0,0,0,.2)!important}
+.supplier-explorer-page .supplier-explorer-content{display:grid!important;grid-template-columns:minmax(0,1fr) 300px!important;gap:22px!important;width:100%!important;align-items:start!important}
+.supplier-explorer-page .supplier-results{order:1!important;width:100%!important;min-width:0!important}
+.supplier-explorer-page .supplier-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:18px!important;width:100%!important;max-width:100%!important;padding:0!important;overflow:visible!important}
+.supplier-explorer-page .supplier-filters-panel{position:sticky!important;top:86px!important;order:2!important;display:flex!important;flex-direction:column!important;gap:28px!important;width:100%!important;margin:0!important;padding:6px 0!important;background:transparent!important;border:none!important;box-shadow:none!important}
+.supplier-explorer-page .supplier-filters-panel::before,.supplier-explorer-page .supplier-filters-panel::after{display:none!important;content:none!important}
+.supplier-explorer-page .supplier-filter-control{width:100%!important;display:flex!important;flex-direction:column!important;gap:11px!important;margin:0!important;padding:0!important;background:transparent!important;border:none!important;box-shadow:none!important}
+.supplier-explorer-page .supplier-filter-label{display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;margin:0!important;padding:0!important}
+.supplier-explorer-page .supplier-filter-label span{color:#fff!important;font-size:.88rem!important;font-weight:700!important}
+.supplier-explorer-page .supplier-filter-label strong{color:#f4c400!important;font-size:.84rem!important;font-weight:800!important}
+
+/* Dark-blue 3D sliders */
+.supplier-explorer-page .supplier-filter-control input[type=range]{width:100%!important;height:18px!important;margin:0!important;padding:0!important;appearance:none!important;-webkit-appearance:none!important;background:transparent!important;accent-color:#183153!important;cursor:pointer!important;border:none!important;outline:none!important}
+.supplier-explorer-page .supplier-filter-control input[type=range]::-webkit-slider-runnable-track{height:8px!important;background:#183153!important;border-radius:999px!important;border:1px solid rgba(255,255,255,.08)!important;box-shadow:inset 0 2px 3px rgba(0,0,0,.30),inset 0 -1px 2px rgba(255,255,255,.12),0 2px 4px rgba(0,0,0,.22)!important}
+.supplier-explorer-page .supplier-filter-control input[type=range]::-webkit-slider-thumb{appearance:none!important;-webkit-appearance:none!important;width:18px!important;height:18px!important;margin-top:-6px!important;border-radius:50%!important;background:#0b1f3a!important;border:2px solid #f4c400!important;box-shadow:0 3px 7px rgba(0,0,0,.45),inset 0 1px 2px rgba(255,255,255,.15)!important;cursor:grab!important}
+.supplier-explorer-page .supplier-filter-control input[type=range]::-moz-range-track{height:8px!important;background:#183153!important;border-radius:999px!important;border:1px solid rgba(255,255,255,.08)!important;box-shadow:inset 0 2px 3px rgba(0,0,0,.30),inset 0 -1px 2px rgba(255,255,255,.12),0 2px 4px rgba(0,0,0,.22)!important}
+.supplier-explorer-page .supplier-filter-control input[type=range]::-moz-range-thumb{width:18px!important;height:18px!important;border-radius:50%!important;background:#0b1f3a!important;border:2px solid #f4c400!important;box-shadow:0 3px 7px rgba(0,0,0,.45),inset 0 1px 2px rgba(255,255,255,.15)!important;cursor:grab!important}
+.supplier-explorer-page .supplier-filter-control input[type=range]:focus{outline:none!important}
+.supplier-explorer-page .supplier-range-scale{display:none!important}
+
+/* Supplier cards */
+.supplier-explorer-page .supplier-card{position:relative!important;width:100%!important;min-width:0!important;height:380px!important;min-height:380px!important;margin:0!important;padding:28px!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;background:#0b1f3a!important;color:#fff!important;border:none!important;outline:none!important;border-radius:16px!important;box-shadow:0 10px 24px rgba(0,0,0,.18)!important;overflow:hidden!important;cursor:pointer!important;transition:transform 400ms ease,filter 400ms ease,opacity 400ms ease,box-shadow 400ms ease!important}
+.supplier-explorer-page .supplier-card:hover{background:#0b1f3a!important;border:none!important;outline:none!important;transform:scale(1.08)!important;filter:none!important;opacity:1!important;z-index:10!important;box-shadow:0 18px 35px rgba(0,0,0,.28)!important}
+.supplier-explorer-page .supplier-grid:has(.supplier-card:hover) .supplier-card:not(:hover){background:#0b1f3a!important;filter:blur(8px)!important;transform:scale(.90)!important;opacity:.72!important}
+.supplier-explorer-page .supplier-grid:not(:has(.supplier-card:hover)) .supplier-card{background:#0b1f3a!important;filter:none!important;transform:none!important;opacity:1!important}
+.supplier-explorer-page .supplier-card:focus,.supplier-explorer-page .supplier-card:focus-visible{border:none!important;outline:none!important}
+.supplier-explorer-page .supplier-card-name{color:#fff!important}
+.supplier-explorer-page .supplier-card-meta{color:#a9b7ca!important}
+.supplier-explorer-page .supplier-stat span{color:#a9b7ca!important}
+.supplier-explorer-page .supplier-stat strong{color:#fff!important}
+.supplier-explorer-page .supplier-risk-high{color:#ef4444!important}
+.supplier-explorer-page .supplier-risk-medium{color:#f97316!important}
+.supplier-explorer-page .supplier-risk-low{color:#22c55e!important}
+
+/* Footer */
+.main-content:has(.supplier-explorer-page){background:#183153!important;min-height:100vh!important;height:auto!important;overflow-x:hidden!important;overflow-y:visible!important}
+.main-content:has(.supplier-explorer-page)>.site-footer{width:100%!important;margin:0!important;padding:18px 28px 20px!important;box-sizing:border-box!important;flex-shrink:0!important;align-self:stretch!important;display:grid!important;grid-template-columns:1fr auto 1fr!important;align-items:center!important;gap:20px!important;border-top:1px solid rgba(255,255,255,.14)!important;background:#0b1f3a!important;color:rgba(255,255,255,.78)!important}
+.main-content:has(.supplier-explorer-page)>.site-footer .site-footer-brand{justify-self:start!important;color:#f4c400!important}
+.main-content:has(.supplier-explorer-page)>.site-footer .logo-ai-text{color:#fff!important}
+.main-content:has(.supplier-explorer-page)>.site-footer a{color:rgba(255,255,255,.78)!important}
+.main-content:has(.supplier-explorer-page)>.site-footer a:hover{color:#f4c400!important}
+.main-content:has(.supplier-explorer-page)>.site-footer .site-footer-socials{justify-self:end!important}
+.main-content:has(.supplier-explorer-page)>.site-footer .site-footer-socials a,.main-content:has(.supplier-explorer-page)>.site-footer .site-footer-socials svg{color:#fff!important;fill:#fff!important}
+.main-content:has(.supplier-explorer-page)>.site-footer .site-footer-socials a:hover,.main-content:has(.supplier-explorer-page)>.site-footer .site-footer-socials a:hover svg{color:#f4c400!important;fill:#f4c400!important}
+
+@media(max-width:1050px){
+  .supplier-explorer-page .supplier-explorer-content{grid-template-columns:1fr!important}
+  .supplier-explorer-page .supplier-filters-panel{position:static!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:24px!important}
+  .supplier-explorer-page .supplier-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:760px){
+  .supplier-explorer-page{padding:20px 16px 30px!important}
+  .supplier-explorer-page .supplier-explorer-toolbar{grid-template-columns:1fr!important}
+  .supplier-explorer-page .supplier-reset-button{width:100%!important}
+  .supplier-explorer-page .supplier-filters-panel{grid-template-columns:1fr!important}
+  .supplier-explorer-page .supplier-grid{grid-template-columns:1fr!important}
+  .supplier-explorer-page .supplier-card{height:340px!important;min-height:340px!important}
+  .main-content:has(.supplier-explorer-page)>.site-footer{grid-template-columns:1fr!important;justify-items:center!important;text-align:center!important;gap:10px!important}
+  .main-content:has(.supplier-explorer-page)>.site-footer .site-footer-brand,.main-content:has(.supplier-explorer-page)>.site-footer .site-footer-socials{justify-self:center!important}
+}
