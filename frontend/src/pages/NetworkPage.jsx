@@ -1,19 +1,94 @@
-import { useEffect, useMemo, useState, useCallback } from 'react';
-import ForceGraph, { nodeColorForRisk } from '../components/ForceGraph.jsx';
-import { fetchGraph, simulateGraph } from '../api/client.js';
+import {
+  useEffect,
+  useMemo,
+  useState,
+  useCallback,
+} from 'react';
 
-const nodeRisk = (n) => n.risk_score ?? n.base_risk ?? n.risk ?? n.score ?? 0;
+import ForceGraph, {
+  nodeColorForRisk,
+} from '../components/ForceGraph.jsx';
 
-const NetworkPage = ({ companyId }) => {
-  const [graph, setGraph] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+import {
+  fetchGraph,
+  simulateGraph,
+} from '../api/client.js';
 
-  const [disrupted, setDisrupted] = useState(() => new Set());
-  const [sim, setSim] = useState(null);
-  const [simBusy, setSimBusy] = useState(false);
-  const [simError, setSimError] = useState(null);
-  const [selectedId, setSelectedId] = useState(null);
+const nodeRisk = (n) =>
+  n.risk_score ??
+  n.base_risk ??
+  n.risk ??
+  n.score ??
+  0;
+
+const NetworkPage = ({
+  companyId,
+}) => {
+  const [graph, setGraph] =
+    useState(null);
+
+  const [loading, setLoading] =
+    useState(true);
+
+  const [error, setError] =
+    useState(null);
+
+  const [disrupted, setDisrupted] =
+    useState(() => new Set());
+
+  const [sim, setSim] =
+    useState(null);
+
+  const [simBusy, setSimBusy] =
+    useState(false);
+
+  const [simError, setSimError] =
+    useState(null);
+
+  const [selectedId, setSelectedId] =
+    useState(null);
+
+  /* =========================================================
+     GRAPH HEIGHT
+     ========================================================= */
+
+  const [graphHeight, setGraphHeight] =
+    useState(() =>
+      typeof window !== 'undefined'
+        ? Math.max(
+            520,
+            window.innerHeight - 70,
+          )
+        : 600,
+    );
+
+  useEffect(() => {
+    const updateHeight = () => {
+      setGraphHeight(
+        Math.max(
+          520,
+          window.innerHeight - 70,
+        ),
+      );
+    };
+
+    updateHeight();
+
+    window.addEventListener(
+      'resize',
+      updateHeight,
+    );
+
+    return () =>
+      window.removeEventListener(
+        'resize',
+        updateHeight,
+      );
+  }, []);
+
+  /* =========================================================
+     FETCH GRAPH
+     ========================================================= */
 
   useEffect(() => {
     setLoading(true);
@@ -21,24 +96,55 @@ const NetworkPage = ({ companyId }) => {
     setDisrupted(new Set());
     setSim(null);
     setSelectedId(null);
+
     fetchGraph(companyId)
-      .then((data) => setGraph(data))
-      .catch((err) => setError(err?.response?.data?.detail || err.message || 'Failed to load network'))
-      .finally(() => setLoading(false));
+      .then((data) => {
+        setGraph(data);
+      })
+      .catch((err) => {
+        setError(
+          err?.response?.data?.detail ||
+            err.message ||
+            'Failed to load network',
+        );
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [companyId]);
 
+  /* =========================================================
+     NODES
+     ========================================================= */
+
   const nodes = useMemo(() => {
-    const raw = graph?.nodes ?? [];
+    const raw =
+      graph?.nodes ?? [];
+
     return raw.map((n) => ({
       id: n.id,
-      label: n.label || n.name || n.id,
+
+      label:
+        n.label ||
+        n.name ||
+        n.id,
+
       type: n.type,
+
       risk: nodeRisk(n),
     }));
   }, [graph]);
 
+  /* =========================================================
+     LINKS
+     ========================================================= */
+
   const links = useMemo(() => {
-    const raw = graph?.edges ?? graph?.links ?? [];
+    const raw =
+      graph?.edges ??
+      graph?.links ??
+      [];
+
     return raw.map((e) => ({
       source: e.source,
       target: e.target,
@@ -46,218 +152,691 @@ const NetworkPage = ({ companyId }) => {
     }));
   }, [graph]);
 
-  const companyNodeId = useMemo(() => {
-    const c = (graph?.nodes ?? []).find((n) => n.type === 'company');
-    return c?.id ?? null;
-  }, [graph]);
+  /* =========================================================
+     COMPANY NODE
+     ========================================================= */
 
-  // Projected-risk lookup once a simulation has run.
-  const projectedMap = useMemo(() => {
-    if (!sim?.affected_nodes) return null;
-    const m = new Map();
-    sim.affected_nodes.forEach((a) => m.set(a.id, a.projected_risk));
-    return m;
-  }, [sim]);
+  const companyNodeId =
+    useMemo(() => {
+      const company =
+        (
+          graph?.nodes ?? []
+        ).find(
+          (n) =>
+            n.type ===
+            'company',
+        );
 
-  const riskFor = useCallback(
-    (id) => {
-      if (projectedMap && projectedMap.has(id)) return projectedMap.get(id);
-      const n = nodes.find((x) => x.id === id);
-      return n ? n.risk : 0;
-    },
-    [projectedMap, nodes],
-  );
+      return company?.id ?? null;
+    }, [graph]);
 
-  const highlightLinks = useMemo(() => {
-    const set = new Set();
-    (sim?.cascade_edges ?? []).forEach((e) => set.add(`${e.source}>${e.target}`));
-    return set;
-  }, [sim]);
+  /* =========================================================
+     PROJECTED RISK
+     ========================================================= */
 
-  const toggleDisrupted = useCallback((node) => {
-    const id = typeof node === 'object' ? node.id : node;
-    setSelectedId(id);
-    setDisrupted((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  }, []);
+  const projectedMap =
+    useMemo(() => {
+      if (
+        !sim?.affected_nodes
+      ) {
+        return null;
+      }
 
-  const runSimulation = async () => {
-    if (!disrupted.size) return;
-    setSimBusy(true);
-    setSimError(null);
-    try {
-      const result = await simulateGraph(companyId, Array.from(disrupted));
-      setSim(result);
-    } catch (err) {
-      setSimError(err?.response?.data?.detail || err.message || 'Simulation failed');
-    } finally {
-      setSimBusy(false);
-    }
-  };
+      const map =
+        new Map();
+
+      sim.affected_nodes.forEach(
+        (item) => {
+          map.set(
+            item.id,
+            item.projected_risk,
+          );
+        },
+      );
+
+      return map;
+    }, [sim]);
+
+  /* =========================================================
+     RISK LOOKUP
+     ========================================================= */
+
+  const riskFor =
+    useCallback(
+      (id) => {
+        if (
+          projectedMap &&
+          projectedMap.has(id)
+        ) {
+          return projectedMap.get(
+            id,
+          );
+        }
+
+        const node =
+          nodes.find(
+            (item) =>
+              item.id === id,
+          );
+
+        return node
+          ? node.risk
+          : 0;
+      },
+      [
+        projectedMap,
+        nodes,
+      ],
+    );
+
+  /* =========================================================
+     HIGHLIGHT CASCADE LINKS
+     ========================================================= */
+
+  const highlightLinks =
+    useMemo(() => {
+      const set =
+        new Set();
+
+      (
+        sim?.cascade_edges ??
+        []
+      ).forEach((edge) => {
+        set.add(
+          `${edge.source}>${edge.target}`,
+        );
+      });
+
+      return set;
+    }, [sim]);
+
+  /* =========================================================
+     TOGGLE NODE DISRUPTION
+     ========================================================= */
+
+  const toggleDisrupted =
+    useCallback(
+      (node) => {
+        const id =
+          typeof node ===
+          'object'
+            ? node.id
+            : node;
+
+        setSelectedId(id);
+
+        setDisrupted(
+          (previous) => {
+            const next =
+              new Set(
+                previous,
+              );
+
+            if (
+              next.has(id)
+            ) {
+              next.delete(id);
+            } else {
+              next.add(id);
+            }
+
+            return next;
+          },
+        );
+      },
+      [],
+    );
+
+  /* =========================================================
+     RUN SIMULATION
+     ========================================================= */
+
+  const runSimulation =
+    async () => {
+      if (
+        !disrupted.size
+      ) {
+        return;
+      }
+
+      setSimBusy(true);
+      setSimError(null);
+
+      try {
+        const result =
+          await simulateGraph(
+            companyId,
+            Array.from(
+              disrupted,
+            ),
+          );
+
+        setSim(result);
+      } catch (err) {
+        setSimError(
+          err?.response?.data
+            ?.detail ||
+            err.message ||
+            'Simulation failed',
+        );
+      } finally {
+        setSimBusy(false);
+      }
+    };
+
+  /* =========================================================
+     RESET
+     ========================================================= */
 
   const reset = () => {
-    setDisrupted(new Set());
+    setDisrupted(
+      new Set(),
+    );
+
     setSim(null);
+
     setSimError(null);
+
     setSelectedId(null);
   };
 
-  const selectedNode = selectedId ? nodes.find((n) => n.id === selectedId) : null;
-  const selectedDeps = useMemo(() => {
-    if (!selectedId) return [];
-    const byId = Object.fromEntries(nodes.map((n) => [n.id, n]));
-    const deps = [];
-    links.forEach((l) => {
-      if (l.source === selectedId && byId[l.target]) deps.push({ dir: 'out', node: byId[l.target], relation: l.relation });
-      if (l.target === selectedId && byId[l.source]) deps.push({ dir: 'in', node: byId[l.source], relation: l.relation });
-    });
-    return deps;
-  }, [selectedId, nodes, links]);
+  /* =========================================================
+     SELECTED NODE
+     ========================================================= */
 
-  if (loading) return <div className="page-body loading-state">Loading network graph…</div>;
-  if (error) {
+  const selectedNode =
+    selectedId
+      ? nodes.find(
+          (node) =>
+            node.id ===
+            selectedId,
+        )
+      : null;
+
+  /* =========================================================
+     SELECTED NODE DEPENDENCIES
+     ========================================================= */
+
+  const selectedDeps =
+    useMemo(() => {
+      if (!selectedId) {
+        return [];
+      }
+
+      const byId =
+        Object.fromEntries(
+          nodes.map(
+            (node) => [
+              node.id,
+              node,
+            ],
+          ),
+        );
+
+      const deps = [];
+
+      links.forEach(
+        (link) => {
+          if (
+            link.source ===
+              selectedId &&
+            byId[
+              link.target
+            ]
+          ) {
+            deps.push({
+              dir: 'out',
+              node:
+                byId[
+                  link.target
+                ],
+              relation:
+                link.relation,
+            });
+          }
+
+          if (
+            link.target ===
+              selectedId &&
+            byId[
+              link.source
+            ]
+          ) {
+            deps.push({
+              dir: 'in',
+              node:
+                byId[
+                  link.source
+                ],
+              relation:
+                link.relation,
+            });
+          }
+        },
+      );
+
+      return deps;
+    }, [
+      selectedId,
+      nodes,
+      links,
+    ]);
+
+  /* =========================================================
+     LOADING
+     ========================================================= */
+
+  if (loading) {
     return (
-      <div className="page-body error-state">
-        <h2 style={{ marginTop: 0 }}>Could not load network</h2>
-        <p>{error}</p>
+      <div className="page-body loading-state">
+        Loading network graph…
       </div>
     );
   }
 
-  return (
-    <div className="page-body">
-      <div>
-        <h1 style={{ margin: 0, fontSize: '1.5rem' }}>Network &amp; What-If Simulation</h1>
-        <p className="page-sub">
-          Click nodes to mark them <strong>disrupted</strong>, then run a cascade simulation across the dependency graph.
+  /* =========================================================
+     ERROR
+     ========================================================= */
+
+  if (error) {
+    return (
+      <div className="page-body error-state">
+        <h2
+          style={{
+            marginTop: 0,
+          }}
+        >
+          Could not load network
+        </h2>
+
+        <p>
+          {error}
         </p>
       </div>
+    );
+  }
 
-      <div className="network-layout">
-        <section className="card network-graph-card" style={{ padding: 0, overflow: 'hidden' }}>
-          <div className="card-header" style={{ padding: '16px 18px 0' }}>
-            <h3 className="card-title">Dependency Graph</h3>
-            <div className="graph-legend">
-              <span><span className="dot" style={{ background: '#38bdf8' }} /> Company</span>
-              <span><span className="dot" style={{ background: nodeColorForRisk(20) }} /> Low</span>
-              <span><span className="dot" style={{ background: nodeColorForRisk(50) }} /> Med</span>
-              <span><span className="dot" style={{ background: nodeColorForRisk(80) }} /> High</span>
-            </div>
+  /* =========================================================
+     PAGE
+     ========================================================= */
+
+  return (
+    <div className="network-page">
+
+      {/* =====================================================
+          FULL PAGE GRAPH
+          ===================================================== */}
+
+      <div
+        className="network-background"
+      >
+        {nodes.length ? (
+          <ForceGraph
+            nodes={nodes}
+            links={links}
+            riskFor={riskFor}
+            companyNodeId={
+              companyNodeId
+            }
+            disruptedIds={
+              disrupted
+            }
+            highlightLinks={
+              highlightLinks
+            }
+            selectedId={
+              selectedId
+            }
+            onNodeClick={
+              toggleDisrupted
+            }
+            height={
+              graphHeight
+            }
+          />
+        ) : (
+          <div className="empty-state network-empty-state">
+            No graph nodes for this company.
           </div>
-          {nodes.length ? (
-            <ForceGraph
-              nodes={nodes}
-              links={links}
-              riskFor={riskFor}
-              companyNodeId={companyNodeId}
-              disruptedIds={disrupted}
-              highlightLinks={highlightLinks}
-              selectedId={selectedId}
-              onNodeClick={toggleDisrupted}
-            />
-          ) : (
-            <div className="empty-state">No graph nodes for this company.</div>
-          )}
-        </section>
+        )}
+      </div>
+
+      {/* =====================================================
+          CONTENT OVER GRAPH
+          ===================================================== */}
+
+      <div className="network-overlay">
+
+        {/* ===================================================
+            HEADER
+            =================================================== */}
+
+        <div className="network-page-header">
+
+          <h1>
+            Network &amp; What-If Simulation
+          </h1>
+
+          <p>
+            Click nodes to mark them{' '}
+            <strong>
+              disrupted
+            </strong>
+            , then run a cascade
+            simulation across the
+            dependency graph.
+          </p>
+
+        </div>
+
+        {/* ===================================================
+            LEGEND
+            =================================================== */}
+
+        <div className="network-legend">
+
+          <span className="network-legend-item">
+            <span className="network-legend-dot legend-company" />
+            Company
+          </span>
+
+          <span className="network-legend-item">
+            <span className="network-legend-dot legend-low" />
+            Low
+          </span>
+
+          <span className="network-legend-item">
+            <span className="network-legend-dot legend-medium" />
+            Med
+          </span>
+
+          <span className="network-legend-item">
+            <span className="network-legend-dot legend-high" />
+            High
+          </span>
+
+        </div>
+
+        {/* ===================================================
+            RIGHT SIDE
+            =================================================== */}
 
         <aside className="network-side">
-          <section className="card">
-            <h3 className="card-title" style={{ marginBottom: 12 }}>What-If Simulation</h3>
-            <div className="sim-controls">
-              <div className="sim-count">
-                <span className="mono big">{disrupted.size}</span>
-                <span className="muted"> node{disrupted.size === 1 ? '' : 's'} marked disrupted</span>
-              </div>
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                <button
-                  type="button"
-                  className="btn-primary"
-                  style={{ marginTop: 0 }}
-                  disabled={!disrupted.size || simBusy}
-                  onClick={runSimulation}
-                >
-                  {simBusy ? 'Simulating…' : 'Run simulation'}
-                </button>
-                <button type="button" className="btn-ghost" onClick={reset} disabled={!disrupted.size && !sim}>
-                  Resolve / Reset
-                </button>
-              </div>
-              {simError && <div className="auth-error" style={{ marginTop: 8 }}>{simError}</div>}
+
+          {/* =================================================
+              WHAT-IF
+              ================================================= */}
+
+          <section className="network-overlay-card">
+
+            <h3 className="network-card-title">
+              WHAT-IF SIMULATION
+            </h3>
+
+            <div className="network-disrupted-count">
+
+              <span className="network-disrupted-number">
+                {disrupted.size}
+              </span>
+
+              <span>
+                node
+                {disrupted.size ===
+                1
+                  ? ''
+                  : 's'}{' '}
+                marked disrupted
+              </span>
+
             </div>
 
-            {sim && (
-              <div className="sim-summary">
-                <div className="sim-metric">
-                  <span className="mono big danger">{sim.nodes_affected}</span>
-                  <span className="muted">nodes affected</span>
-                </div>
-                <div className="sim-metric">
-                  <span className="mono big warning">{sim.critical_paths_broken}</span>
-                  <span className="muted">critical paths broken</span>
-                </div>
-                <div className="sim-risk-delta">
-                  <span className="muted">Network risk</span>
-                  <div className="delta-row">
-                    <span className="mono">{Math.round(sim.overall_risk_before)}</span>
-                    <span className="arrow">→</span>
-                    <span
-                      className="mono big"
-                      style={{ color: nodeColorForRisk(sim.overall_risk_after) }}
-                    >
-                      {Math.round(sim.overall_risk_after)}
-                    </span>
-                  </div>
-                </div>
+            <div className="network-action-row">
+
+              <button
+                type="button"
+                className="network-run-button"
+                disabled={
+                  !disrupted.size ||
+                  simBusy
+                }
+                onClick={
+                  runSimulation
+                }
+              >
+                {simBusy
+                  ? 'Simulating…'
+                  : 'Run simulation'}
+              </button>
+
+              <button
+                type="button"
+                className="network-reset-button"
+                onClick={
+                  reset
+                }
+                disabled={
+                  !disrupted.size &&
+                  !sim
+                }
+              >
+                Resolve / Reset
+              </button>
+
+            </div>
+
+            {simError && (
+              <div className="network-sim-error">
+                {simError}
               </div>
             )}
-          </section>
 
-          <section className="card">
-            <h3 className="card-title" style={{ marginBottom: 12 }}>Node Details</h3>
-            {selectedNode ? (
-              <div>
-                <div className="node-detail-head">
-                  <div>
-                    <div style={{ fontWeight: 700 }}>{selectedNode.label}</div>
-                    <div className="muted" style={{ fontSize: '0.78rem' }}>
-                      {selectedNode.type || 'node'}
-                      {disrupted.has(selectedNode.id) ? ' · disrupted' : ''}
-                    </div>
-                  </div>
-                  <span
-                    className="mono big"
-                    style={{ color: nodeColorForRisk(riskFor(selectedNode.id)) }}
-                  >
-                    {Math.round(riskFor(selectedNode.id))}
+            {/* ---------------------------------------------
+                SIMULATION RESULT
+                --------------------------------------------- */}
+
+            {sim && (
+              <div className="network-sim-summary">
+
+                <div className="network-sim-metric">
+                  <span className="network-metric-number danger">
+                    {sim.nodes_affected}
+                  </span>
+
+                  <span>
+                    nodes affected
                   </span>
                 </div>
-                <div className="dep-list">
-                  <div className="dep-title">Direct dependencies</div>
-                  {selectedDeps.length ? (
-                    selectedDeps.map((d, i) => (
-                      <div key={`${d.node.id}-${i}`} className="dep-row">
-                        <span className={`dep-dir ${d.dir}`}>{d.dir === 'out' ? '→' : '←'}</span>
-                        <span style={{ flex: 1 }}>{d.node.label}</span>
-                        <span className="mono" style={{ color: nodeColorForRisk(riskFor(d.node.id)) }}>
-                          {Math.round(riskFor(d.node.id))}
-                        </span>
-                      </div>
-                    ))
-                  ) : (
-                    <div className="muted" style={{ fontSize: '0.82rem' }}>No direct dependencies.</div>
-                  )}
+
+                <div className="network-sim-metric">
+                  <span className="network-metric-number warning">
+                    {
+                      sim.critical_paths_broken
+                    }
+                  </span>
+
+                  <span>
+                    critical paths broken
+                  </span>
                 </div>
+
+                <div className="network-risk-delta">
+
+                  <span>
+                    Network risk
+                  </span>
+
+                  <div className="network-risk-values">
+
+                    <span>
+                      {Math.round(
+                        sim.overall_risk_before,
+                      )}
+                    </span>
+
+                    <span>
+                      →
+                    </span>
+
+                    <strong
+                      style={{
+                        color:
+                          nodeColorForRisk(
+                            sim.overall_risk_after,
+                          ),
+                      }}
+                    >
+                      {Math.round(
+                        sim.overall_risk_after,
+                      )}
+                    </strong>
+
+                  </div>
+
+                </div>
+
+              </div>
+            )}
+
+          </section>
+
+          {/* =================================================
+              NODE DETAILS
+              ================================================= */}
+
+          <section className="network-overlay-card">
+
+            <h3 className="network-card-title">
+              NODE DETAILS
+            </h3>
+
+            {selectedNode ? (
+              <div>
+
+                <div className="network-node-detail-head">
+
+                  <div>
+
+                    <div className="network-selected-name">
+                      {
+                        selectedNode.label
+                      }
+                    </div>
+
+                    <div className="network-selected-type">
+                      {selectedNode.type ||
+                        'node'}
+
+                      {disrupted.has(
+                        selectedNode.id,
+                      )
+                        ? ' · disrupted'
+                        : ''}
+                    </div>
+
+                  </div>
+
+                  <span
+                    className="network-selected-risk"
+                    style={{
+                      color:
+                        nodeColorForRisk(
+                          riskFor(
+                            selectedNode.id,
+                          ),
+                        ),
+                    }}
+                  >
+                    {Math.round(
+                      riskFor(
+                        selectedNode.id,
+                      ),
+                    )}
+                  </span>
+
+                </div>
+
+                <div className="network-dependency-list">
+
+                  <div className="network-dependency-title">
+                    Direct dependencies
+                  </div>
+
+                  {selectedDeps.length ? (
+                    selectedDeps.map(
+                      (
+                        dependency,
+                        index,
+                      ) => (
+                        <div
+                          key={`${dependency.node.id}-${index}`}
+                          className="network-dependency-row"
+                        >
+
+                          <span
+                            className={`network-dependency-direction ${dependency.dir}`}
+                          >
+                            {dependency.dir ===
+                            'out'
+                              ? '→'
+                              : '←'}
+                          </span>
+
+                          <span className="network-dependency-name">
+                            {
+                              dependency
+                                .node
+                                .label
+                            }
+                          </span>
+
+                          <span
+                            className="network-dependency-risk"
+                            style={{
+                              color:
+                                nodeColorForRisk(
+                                  riskFor(
+                                    dependency
+                                      .node
+                                      .id,
+                                  ),
+                                ),
+                            }}
+                          >
+                            {Math.round(
+                              riskFor(
+                                dependency
+                                  .node
+                                  .id,
+                              ),
+                            )}
+                          </span>
+
+                        </div>
+                      ),
+                    )
+                  ) : (
+                    <div className="network-no-dependencies">
+                      No direct dependencies.
+                    </div>
+                  )}
+
+                </div>
+
               </div>
             ) : (
-              <div className="muted" style={{ fontSize: '0.85rem' }}>Click a node to inspect it and toggle its disruption state.</div>
+              <div className="network-node-help">
+                Click a node to inspect
+                it and toggle its
+                disruption state.
+              </div>
             )}
+
           </section>
+
         </aside>
+
       </div>
+
     </div>
   );
 };
