@@ -7581,3 +7581,435 @@ input[type="range"]:focus-visible {
   .main-content:has(.supplier-explorer-page)>.site-footer{grid-template-columns:1fr!important;justify-items:center!important;text-align:center!important;gap:10px!important}
   .main-content:has(.supplier-explorer-page)>.site-footer .site-footer-brand,.main-content:has(.supplier-explorer-page)>.site-footer .site-footer-socials{justify-self:center!important}
 }
+
+/* SUPPLIER EXPLORER — REFERENCE RANGE SLIDERS */
+.supplier-explorer-page .supplier-filters-panel{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important;color:#fff!important}
+.supplier-explorer-page .supplier-filters-panel::before,.supplier-explorer-page .supplier-filters-panel::after{display:none!important;content:none!important}
+.supplier-explorer-page .supplier-filter-control{display:grid!important;gap:10px!important;width:100%!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
+.supplier-explorer-page .supplier-filter-label{display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;margin:0!important;padding:0!important}
+.supplier-explorer-page .supplier-filter-label span{color:#fff!important;font-size:.86rem!important;font-weight:700!important}
+.supplier-explorer-page .supplier-filter-label strong{color:#f4c400!important;font-size:.82rem!important;font-weight:800!important}
+.supplier-explorer-page .supplier-filter-control input[type="range"]{--track-h:6px;--thumb-d:28px;width:100%!important;height:var(--thumb-d)!important;margin:0!important;padding:0!important;appearance:none!important;-webkit-appearance:none!important;background:linear-gradient(90deg,#15b190 0 25%,#f7c742 25% 75%,#b1154c 75% 100%) center/100% var(--track-h) no-repeat!important;border:0!important;border-radius:0!important;outline:none!important;box-shadow:none!important;cursor:ew-resize!important;accent-color:#f7c742!important}
+.supplier-explorer-page .supplier-filter-control input[type="range"]::-webkit-slider-runnable-track{height:var(--track-h)!important;background:transparent!important;border:0!important;border-radius:999px!important}
+.supplier-explorer-page .supplier-filter-control input[type="range"]::-webkit-slider-thumb{appearance:none!important;-webkit-appearance:none!important;width:var(--thumb-d)!important;height:var(--thumb-d)!important;margin-top:calc((var(--track-h) - var(--thumb-d))/2)!important;border:0!important;border-radius:0!important;background:#183153!important;clip-path:polygon(50% 0%,100% 100%,0% 100%)!important;box-shadow:none!important;cursor:ew-resize!important}
+.supplier-explorer-page .supplier-filter-control input[type="range"]::-moz-range-track{height:var(--track-h)!important;background:linear-gradient(90deg,#15b190 0 25%,#f7c742 25% 75%,#b1154c 75% 100%)!important;border:0!important;border-radius:999px!important}
+.supplier-explorer-page .supplier-filter-control input[type="range"]::-moz-range-thumb{width:var(--thumb-d)!important;height:var(--thumb-d)!important;border:0!important;border-radius:0!important;background:#183153!important;clip-path:polygon(50% 0%,100% 100%,0% 100%)!important;cursor:ew-resize!important}
+.supplier-explorer-page .supplier-filter-control input[type="range"]:focus{outline:none!important}
+.supplier-explorer-page .supplier-filter-control input[type="range"]:focus-visible{outline:2px solid rgba(244,196,0,.35)!important;outline-offset:5px!important}
+.supplier-explorer-page .supplier-range-scale{display:none!important}
+@media(max-width:1050px){.supplier-explorer-page .supplier-filters-panel{position:static!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:24px!important}}
+@media(max-width:760px){.supplier-explorer-page .supplier-filters-panel{grid-template-columns:1fr!important}}
+/* =========================================================
+   SUPPLIER EXPLORER — 3D SLIDER DESIGN
+   ========================================================= */
+
+.supplier-explorer-page .supplier-filter-control {
+  position: relative !important;
+}
+
+/* Slider itself */
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"] {
+  --slider-height: 6px !important;
+  --slider-value: 50 !important;
+
+  position: relative !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+
+  width: 100% !important;
+  height: 30px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+
+  cursor: pointer !important;
+}
+
+
+/* =========================================================
+   WEBKIT TRACK
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-runnable-track {
+  height: var(--slider-height) !important;
+
+  border-radius: 999px !important;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #ffffff,
+      #d6d6dc
+    ) !important;
+
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.35),
+    0 1px 1px rgba(255, 255, 255, 0.7) !important;
+}
+
+
+/* =========================================================
+   WEBKIT THUMB — WHITE 3D KNOB
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+
+  width: 22px !important;
+  height: 22px !important;
+
+  margin-top: -8px !important;
+
+  border-radius: 50% !important;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #ffffff,
+      #eeeeef
+    ) !important;
+
+  border: none !important;
+
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.28),
+    inset 0 1px 2px rgba(255, 255, 255, 0.95) !important;
+
+  cursor: grab !important;
+}
+
+
+/* =========================================================
+   FIREFOX TRACK
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-moz-range-track {
+  height: var(--slider-height) !important;
+
+  border-radius: 999px !important;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #ffffff,
+      #d6d6dc
+    ) !important;
+
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.35),
+    0 1px 1px rgba(255, 255, 255, 0.7) !important;
+}
+
+
+/* =========================================================
+   FIREFOX THUMB — WHITE 3D KNOB
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-moz-range-thumb {
+  width: 22px !important;
+  height: 22px !important;
+
+  border-radius: 50% !important;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #ffffff,
+      #eeeeef
+    ) !important;
+
+  border: none !important;
+
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.28),
+    inset 0 1px 2px rgba(255, 255, 255, 0.95) !important;
+
+  cursor: grab !important;
+}
+
+
+/* =========================================================
+   ACTIVE / FOCUS
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]:active::-webkit-slider-thumb {
+  cursor: grabbing !important;
+
+  transform: scale(1.08) !important;
+
+  box-shadow:
+    0 3px 7px rgba(0, 0, 0, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 1) !important;
+}
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]:active::-moz-range-thumb {
+  cursor: grabbing !important;
+
+  transform: scale(1.08) !important;
+
+  box-shadow:
+    0 3px 7px rgba(0, 0, 0, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 1) !important;
+}
+
+
+/* =========================================================
+   REMOVE OLD TRIANGULAR / YELLOW / BLUE THUMB STYLES
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-thumb {
+  clip-path: none !important;
+}
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-moz-range-thumb {
+  clip-path: none !important;
+}
+
+
+/* =========================================================
+   FILTER LABEL
+   ========================================================= */
+
+.supplier-explorer-page .supplier-filter-label {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  margin-bottom: 10px !important;
+
+  color: #ffffff !important;
+}
+
+.supplier-explorer-page .supplier-filter-label span {
+  color: #ffffff !important;
+}
+
+.supplier-explorer-page .supplier-filter-label strong {
+  color: #ffffff !important;
+}/* =========================================================
+   SUPPLIER FILTER SLIDERS — YELLOW ACTIVE TRACK
+   ========================================================= */
+
+/* Slider titles */
+.supplier-explorer-page .supplier-filter-label {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 10px !important;
+}
+
+.supplier-explorer-page .supplier-filter-label span {
+  color: #f4c400 !important;
+  font-weight: 650 !important;
+}
+
+.supplier-explorer-page .supplier-filter-label strong {
+  color: #f4c400 !important;
+  font-weight: 700 !important;
+}
+
+
+/* =========================================================
+   RANGE INPUT
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"] {
+  --slider-height: 6px !important;
+
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+
+  width: 100% !important;
+  height: 30px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+
+  cursor: pointer !important;
+}
+
+
+/* =========================================================
+   CHROME / EDGE — TRACK
+   Yellow = selected portion
+   White = remaining portion
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-runnable-track {
+
+  height: var(--slider-height) !important;
+
+  border-radius: 999px !important;
+
+  background:
+    linear-gradient(
+      to right,
+      #f4c400 0%,
+      #f4c400 calc(var(--val) * 1%),
+      #ffffff calc(var(--val) * 1%),
+      #ffffff 100%
+    ) !important;
+
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    0 1px 1px rgba(255, 255, 255, 0.5) !important;
+}
+
+
+/* =========================================================
+   WHITE CIRCULAR KNOB
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-webkit-slider-thumb {
+
+  appearance: none !important;
+  -webkit-appearance: none !important;
+
+  width: 22px !important;
+  height: 22px !important;
+
+  margin-top: -8px !important;
+
+  border-radius: 50% !important;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #ffffff,
+      #eeeeef
+    ) !important;
+
+  border: none !important;
+
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.30),
+    inset 0 1px 2px rgba(255, 255, 255, 1) !important;
+
+  cursor: grab !important;
+
+  clip-path: none !important;
+}
+
+
+/* =========================================================
+   FIREFOX — TRACK
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-moz-range-track {
+
+  height: var(--slider-height) !important;
+
+  border-radius: 999px !important;
+
+  background:
+    linear-gradient(
+      to right,
+      #f4c400 0%,
+      #f4c400 calc(var(--val) * 1%),
+      #ffffff calc(var(--val) * 1%),
+      #ffffff 100%
+    ) !important;
+
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    0 1px 1px rgba(255, 255, 255, 0.5) !important;
+}
+
+
+/* =========================================================
+   FIREFOX — WHITE KNOB
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]::-moz-range-thumb {
+
+  width: 22px !important;
+  height: 22px !important;
+
+  border-radius: 50% !important;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #ffffff,
+      #eeeeef
+    ) !important;
+
+  border: none !important;
+
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.30),
+    inset 0 1px 2px rgba(255, 255, 255, 1) !important;
+
+  cursor: grab !important;
+
+  clip-path: none !important;
+}
+
+
+/* =========================================================
+   ACTIVE / DRAGGING
+   ========================================================= */
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]:active::-webkit-slider-thumb {
+  cursor: grabbing !important;
+  transform: scale(1.08) !important;
+}
+
+.supplier-explorer-page
+.supplier-filter-control
+input[type="range"]:active::-moz-range-thumb {
+  cursor: grabbing !important;
+  transform: scale(1.08) !important;
+}.supplier-explorer-page .supplier-filter-label span {
+  color: #f4c400 !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.2px !important;
+}
+
+.supplier-explorer-page .supplier-filter-label strong {
+  color: #f4c400 !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+}

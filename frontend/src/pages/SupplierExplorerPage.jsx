@@ -8,7 +8,6 @@ import { compositeFromSupplier } from '../utils/risk.js';
 
 const SupplierExplorerPage = ({ companyId }) => {
   const [suppliers, setSuppliers] = useState([]);
-
   const [search, setSearch] = useState('');
   const [country, setCountry] = useState('All');
 
@@ -127,6 +126,7 @@ const SupplierExplorerPage = ({ companyId }) => {
   const resetFilters = () => {
     setSearch('');
     setCountry('All');
+
     setRiskMax(100);
     setCostMax(100);
     setLeadMax(90);
@@ -199,6 +199,7 @@ const SupplierExplorerPage = ({ companyId }) => {
             }}
             aria-label="Country"
           >
+
             <option value="All">
               Country
             </option>
@@ -213,6 +214,7 @@ const SupplierExplorerPage = ({ companyId }) => {
                   {item}
                 </option>
               ))}
+
           </select>
 
         </div>
@@ -237,13 +239,17 @@ const SupplierExplorerPage = ({ companyId }) => {
 
       <section className="supplier-explorer-content">
 
+
         {/* ===================================================
             FILTER PANEL
             =================================================== */}
 
         <aside className="supplier-filters-panel">
 
-          {/* RISK SCORE */}
+
+          {/* =================================================
+              RISK SCORE
+              ================================================= */}
 
           <div className="supplier-filter-control">
 
@@ -264,18 +270,28 @@ const SupplierExplorerPage = ({ companyId }) => {
               min="0"
               max="100"
               value={riskMax}
+
+              style={{
+                '--val': riskMax,
+                '--min': 0,
+                '--max': 100,
+              }}
+
               onChange={(event) => {
                 setRiskMax(
                   Number(event.target.value)
                 );
               }}
+
               aria-label="Maximum risk score"
             />
 
           </div>
 
 
-          {/* COST INDEX */}
+          {/* =================================================
+              COST INDEX
+              ================================================= */}
 
           <div className="supplier-filter-control">
 
@@ -296,18 +312,28 @@ const SupplierExplorerPage = ({ companyId }) => {
               min="0"
               max="100"
               value={costMax}
+
+              style={{
+                '--val': costMax,
+                '--min': 0,
+                '--max': 100,
+              }}
+
               onChange={(event) => {
                 setCostMax(
                   Number(event.target.value)
                 );
               }}
+
               aria-label="Maximum cost index"
             />
 
           </div>
 
 
-          {/* LEAD TIME */}
+          {/* =================================================
+              LEAD TIME
+              ================================================= */}
 
           <div className="supplier-filter-control">
 
@@ -328,11 +354,17 @@ const SupplierExplorerPage = ({ companyId }) => {
               min="1"
               max="90"
               value={leadMax}
+
+         style={{
+  '--val': ((leadMax - 1) / 89) * 100,
+}}
+
               onChange={(event) => {
                 setLeadMax(
                   Number(event.target.value)
                 );
               }}
+
               aria-label="Maximum lead time"
             />
 
@@ -363,6 +395,7 @@ const SupplierExplorerPage = ({ companyId }) => {
 
               {filtered.map(
                 (supplier, index) => (
+
                   <SupplierCard
                     key={
                       supplier.id ??
@@ -370,6 +403,7 @@ const SupplierExplorerPage = ({ companyId }) => {
                     }
                     supplier={supplier}
                   />
+
                 )
               )}
 
